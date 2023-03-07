@@ -1,0 +1,130 @@
+.containerFooter {
+    display: flex;
+    width: 100rem;
+    height: 35rem;
+    left: 0rem;
+    top: 339em;
+
+    .sectionOne {
+        width: 37rem;
+        left: 6.5rem;
+        top: 344rem;
+        background-color: #3D3D3D;
+        padding: 1rem;
+
+        .headerOne {
+            width: 20rem;
+            height: 5.5rem;
+            left: 6.5rem;
+            top: 344rem;
+            font-weight: 500;
+            font-size: 4rem;
+            line-height: 5.5rem;
+            color: #ffffff
+        }
+        .headerTwo {
+            width: 20rem;
+            height: 6rem;
+            left: 6.5rem;
+            top: 352rem;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 2rem;
+            color: #E6E6E6;
+        }
+        .headerThree {
+            width: 8.1rem;
+            height: 1.5rem;
+            left: 6.5rem;
+            top: 360rem;
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            color: #FFFFFF;
+        }
+        .form {
+            display: flex;
+            align-items: center;
+            width: 17.6rem;
+            height: 4rem;
+            left: 6.5rem;
+            top: 363rem;
+            background-color: #525252;
+            border-radius: 0.5rem;
+            justify-content: space-between;
+
+            input {
+                width: 13rem;
+                left: 6.5rem;
+                border-style: none;
+                background-color: #525252;
+                color: #ffffff;
+                outline: 0;
+                margin-left: 1vw;
+            }
+
+            .btnEmail {
+                width: 3rem;
+                height: 3rem;
+                left: 20.5rem;
+                top: 364rem;
+                background-color: #FED530;
+                border-radius: 0.5rem;
+                cursor: pointer;
+
+                .setaFooter {
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    left: 0.75rem;
+                    top: 0.75rem;
+                }
+            }
+        }
+    }
+
+    .subContainerFooter {
+        background-color: #2E2E2E;
+        display: flex;
+        width: 75rem;
+        height: 35rem;
+        color: #FFFFFF;
+
+        .sectionTwo {
+            margin-left: 5vw;
+            margin-top: 15vh;
+            width: 21rem;
+
+            p {
+                color: #E6E6E6
+            }
+
+            .title {
+                color: #FFFFFF;
+                width: 4rem;
+                height: 1.5rem;
+                left: 39rem;
+                top: 347rem;
+            }
+        }
+
+        .sectionThree {
+            margin-left: 5vw;
+            margin-top: 15vh;
+            width: 21rem;
+
+            p {
+                color: #E6E6E6
+            }
+        }
+
+        .sectionFour {
+            margin-left: 5vw;
+            margin-top: 15vh;
+            width: 21rem;
+
+            p {
+                color: #E6E6E6
+            }
+        }
+    }
+}
