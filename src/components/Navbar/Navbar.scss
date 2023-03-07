@@ -1,0 +1,59 @@
+header {
+    font-family: 'Rajdhani', sans-serif;
+    color: white;
+    width: 85vw;
+    height: 10vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    .links {
+        display: flex;
+        align-items: center;
+        gap: 3vw;
+
+        a {
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+        }
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+        gap: 1vw;
+
+        input {
+            width: 25vw;
+            background-color: transparent;
+            border-style: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            margin-right: 3vw;
+            border-style: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .userImg {
+            height: 48px;
+            width: 48px;
+            border-radius: 5em;
+        }
+
+        span {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+}
