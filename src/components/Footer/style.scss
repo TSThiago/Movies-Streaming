@@ -1,12 +1,13 @@
 .containerFooter {
+    position: absolute;
     display: flex;
-    width: 100rem;
+    width: 100vw;
     height: 35rem;
     left: 0rem;
-    top: 339em;
+    bottom: 0;
 
     .sectionOne {
-        width: 37rem;
+        width: 30vw;
         left: 6.5rem;
         top: 344rem;
         background-color: #3D3D3D;
@@ -85,7 +86,7 @@
     .subContainerFooter {
         background-color: #2E2E2E;
         display: flex;
-        width: 75rem;
+        width: 70vw;
         height: 35rem;
         color: #FFFFFF;
 

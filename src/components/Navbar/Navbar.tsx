@@ -1,10 +1,14 @@
 import { useState } from 'react'
-import './Navbar.scss'
+import './style.scss'
 import searchIcon from '../../assets/search_icon.png'
 import dogo from '../../assets/dogo.jpg'
+import getMovies from '../../services/api/getMovies'
+
 
 const NavBar = () => {
     const [logged, setLogged] = useState(true)
+
+    getMovies()
 
     return (
         <>
@@ -18,7 +22,7 @@ const NavBar = () => {
                 </div>
                 <div className='user'>
                     <input type='text'></input>
-                    <button><img src={searchIcon} alt='Search icon image'></img></button>
+                    <button onClick={() => setLogged(false)}><img src={searchIcon} alt='Search icon image'></img></button>
                     {logged ? (
                         <>
                             <img className='userImg' src={dogo}></img>
@@ -26,7 +30,7 @@ const NavBar = () => {
                         </>
                     ): (
                         <>
-                        <a >Login</a>
+                        <button onClick={() => setLogged(true)}>Login</button>
                         </>
                     )}
 
