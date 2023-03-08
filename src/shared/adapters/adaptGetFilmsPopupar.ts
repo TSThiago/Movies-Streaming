@@ -6,7 +6,8 @@ const adaptGetFilmsPopupar = (film: Films) : IFilmList[] => {
         return {
             background: item.backdrop_path,
             title: item.original_title,
-            tagsGenre: item.genre_ids
+            tagsGenre: item.genre_ids,
+            movieId: item.id
         }
     })
 
