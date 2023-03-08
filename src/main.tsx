@@ -6,6 +6,7 @@ import './styles/index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <TopMovies/>
+    {/* <TopMovies/> */}
+    <App/>
   </React.StrictMode>,
 )
