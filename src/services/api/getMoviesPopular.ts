@@ -8,7 +8,7 @@ const getMoviesPopular = async () => {
     const moviesPopular : Films = await response.json()
     console.log(moviesPopular)
     const adaptedResponse = adaptGetFilmsPopupar(moviesPopular)
-    console.log(adaptedResponse)
+    
     return adaptedResponse
 }
 

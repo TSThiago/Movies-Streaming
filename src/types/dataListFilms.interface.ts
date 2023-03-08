@@ -2,6 +2,7 @@ export interface IFilmList {
     background: string;
     title: string;
     tagsGenre: number[]
+    movieId: number
 }
 
 export interface Films {
@@ -31,3 +32,13 @@ export interface ResultList {
 export enum OriginalLanguage {
     En = "en",
 }
+
+export interface Genres {
+    genres: Genre[];
+}
+
+export interface Genre {
+    id: number;
+    name: string;
+}
+
