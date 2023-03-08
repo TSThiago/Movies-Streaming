@@ -1,0 +1,20 @@
+.containerFilms{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: #ffffff;
+    justify-content: center;
+    gap: 1rem;
+    
+    .card{
+        width: (calc(90% / 3));
+        padding: 1rem;
+        border: 0.1rem solid white;
+        display: flex;
+        flex-direction: column;
+
+        .subTitle{
+            padding: 0.5rem;
+        }
+    }
+}
