@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './style.scss'
 import searchIcon from '../../assets/search_icon.png'
 import dogo from '../../assets/dogo.jpg'
-import getMovies from '../../services/api/getMovies'
+import getMovies from '../../services/api/getTopMovies'
 
 
 const NavBar = () => {
     const [logged, setLogged] = useState(true)
 
-    getMovies()
+    useEffect(() => {
+        getMovies()
+    }, [])
 
     return (
         <>
@@ -16,7 +18,7 @@ const NavBar = () => {
                 <div className="links">
                     <a className="logo">Watchflix</a>
                     <a>Home</a>
-                    <a>Movies</a>
+                    <a>Top Movies</a>
                     <a>Recently Watch</a>
                     <a>Favorites</a>
                 </div>

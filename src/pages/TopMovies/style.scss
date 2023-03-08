@@ -1,0 +1,86 @@
+* {
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.topMovies {
+    width: 85vw;
+    margin: 0 auto;
+
+    .topMoviesHeader {
+        height: 64px;
+        display: flex;
+        justify-content: space-between;
+        color: white;
+
+        span {
+
+            font-size: 48px;
+            font-weight: 500;
+        }
+
+        button {
+            background-color: transparent;
+            color: #FED530;
+            font-weight: 700;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+
+    .movies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1vw;
+        margin-bottom: 20vh;
+
+        .firstMovie {
+            width: 56vw;
+            height: 65vh;
+
+            background-image: linear-gradient(to bottom,
+                    #323232,
+                    #020202);
+        }
+
+        .movie {
+            width: 27.5vw;
+            height: 65vh;
+
+            background-image: linear-gradient(to bottom,
+                    #323232,
+                    #020202);
+
+        }
+
+        .category {
+            display: grid;
+            place-content: center;
+            width: 77px;
+            height: 27px;
+            margin: 2vh 0 0 2vw;
+            border-radius: 16px;
+            padding: 2px 8px;
+            background-color: #FED530;
+        }
+
+        .runTime {
+            color: #CCCCCC;
+            margin: 42vh 0 0 2vw;
+            display: flex;
+            gap: 1vw;
+            align-items: center;
+            height: 25px;
+        }
+
+        .title {
+            color: white;
+            margin-top: 2vh;
+            margin-left: 2vw;
+            font-size: 48px;
+            font-weight: 700;
+        }
+    }
+}
