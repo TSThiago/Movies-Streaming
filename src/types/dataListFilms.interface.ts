@@ -1,7 +1,7 @@
 export interface IFilmList {
     background: string;
     title: string;
-    tagsGenre: number[]
+    tagsGenre: number[];
     movieId: number
 }
 

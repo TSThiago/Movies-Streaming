@@ -39,10 +39,6 @@
         .firstMovie {
             width: 56vw;
             height: 65vh;
-
-            background-image: linear-gradient(to bottom,
-                    #323232,
-                    #020202);
         }
 
         .movie {
@@ -52,13 +48,22 @@
             background-image: linear-gradient(to bottom,
                     #323232,
                     #020202);
+            background-position: center;
 
+        }
+
+        .categories {
+            justify-content: center;
+            height: 10vh;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
         }
 
         .category {
             display: grid;
             place-content: center;
-            width: 77px;
+            width: 150px;
             height: 27px;
             margin: 2vh 0 0 2vw;
             border-radius: 16px;
@@ -68,7 +73,7 @@
 
         .runTime {
             color: #CCCCCC;
-            margin: 42vh 0 0 2vw;
+            margin: 35vh 0 0 2vw;
             display: flex;
             gap: 1vw;
             align-items: center;
@@ -76,10 +81,10 @@
         }
 
         .title {
-            color: white;
+            color: #FED530;
             margin-top: 2vh;
             margin-left: 2vw;
-            font-size: 48px;
+            font-size: 32px;
             font-weight: 700;
         }
     }
