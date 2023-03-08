@@ -32,3 +32,13 @@ export interface ResultList {
 export enum OriginalLanguage {
     En = "en",
 }
+
+export interface Genres {
+    genres: Genre[];
+}
+
+export interface Genre {
+    id: number;
+    name: string;
+}
+
