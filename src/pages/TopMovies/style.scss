@@ -5,6 +5,8 @@
     box-sizing: border-box;
 }
 
+
+
 .topMovies {
     width: 90vw;
     margin: 0 auto;
@@ -86,17 +88,17 @@
 
         .movie {
             width: 29.33vw;
-            height: 65vh;
+            height: 49vh;
             background-image: linear-gradient(to bottom,
                     #323232,
                     #020202);
-            background-position: center;
             border-radius: 1em;
         }
 
         .categories {
-            margin-top: 2vh;
-            height: 10vh;
+            border-top-right-radius: 1em;
+            border-top-left-radius: 1em;
+            height: 27vh;
             display: flex;
             flex-wrap: wrap;
         }
@@ -105,15 +107,11 @@
             display: grid;
             place-content: center;
             height: 27px;
-            margin: 2vh auto;
+            margin-top: 2vh;
+            margin-left: 1vw;
             border-radius: 16px;
             padding: 2px 8px;
             background-color: #FED530;
-        }
-
-        .moviePhoto {
-            margin-top: 7vh;
-            height: 27vh;
         }
 
         .runTime {

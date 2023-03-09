@@ -4,7 +4,8 @@ import './style.scss'
 import clock from '../../assets/clock.png'
 import getTopMovies from "../../services/api/getTopMovies";
 import { useEffect, useState } from "react";
-import { IFilmList } from "../../types/dataListFilms.interface";
+import { IFilmList, Genre } from "../../types/dataListFilms.interface";
+import getMoviesGenres from "../../services/api/getMoviesGenres";
 
 const TopMovies = () => {
     const [viewMore, setViewMore] = useState(true)
@@ -16,7 +17,7 @@ const TopMovies = () => {
         tagsGenre: [],
         movieId: 0
     })
-
+    const [genre, setGenre] = useState<Genre[]>([])
 
     useEffect(() => {
         getTopMovies()
@@ -30,7 +31,19 @@ const TopMovies = () => {
                 }
                 setTopFive(fiveMovies)
             })
+        getMoviesGenres()
+        .then( function (genres) {
+            setGenre(genres.genres)
+        })
     }, [])
+
+    const getGenreNames = (tags: number[]) => {
+        const names = tags.map((tag) => {
+            const genreName = genre.find((item) => item.id === tag);
+            return genreName ? genreName.name : "";
+        });
+        return names;
+    };
 
     return (
         <>
@@ -57,7 +70,7 @@ const TopMovies = () => {
                         <>
                             <div className="firstMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topOne.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                 <div className="viewMoreCategories">
-                                    {topOne.tagsGenre.map(genre => {
+                                    {getGenreNames(topOne.tagsGenre).map(genre => {
                                         return (
                                             <div className="viewMoreCategory" >
                                                 <span>{genre}</span>
@@ -77,7 +90,7 @@ const TopMovies = () => {
                                 return (
                                     <div key={movie.movieId} className="viewMoreMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + movie.background + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                         <div className="viewMoreCategories">
-                                            {movie.tagsGenre.map(genre => {
+                                            {getGenreNames(movie.tagsGenre).map(genre => {
                                                 return (
                                                     <div className="viewMoreCategory" >
                                                         <span>{genre}</span>
@@ -101,8 +114,8 @@ const TopMovies = () => {
                             {topMovies.map((topMovie: IFilmList) => {
                                 return (
                                     <div key={topMovie.movieId} className="movie" >
-                                        <div className="categories">
-                                            {topMovie.tagsGenre.map(genre => {
+                                        <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                            {getGenreNames(topMovie.tagsGenre).map(genre => {
                                                 return (
                                                     <div className="category" >
                                                         <span>{genre}</span>
@@ -110,9 +123,9 @@ const TopMovies = () => {
                                                 )
                                             })}
                                         </div>
-                                        <div className="moviePhoto" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                        {/* <div className="moviePhoto" >
 
-                                        </div>
+                                        </div> */}
                                         <div className="runTime">
                                             <img src={clock} alt="Clock icon" />
                                             <span>1hr 24mins</span>

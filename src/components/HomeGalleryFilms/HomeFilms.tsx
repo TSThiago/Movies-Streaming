@@ -44,11 +44,16 @@ const HomeGalleryFilms = () => {
             return genreName ? genreName.name : "";
         });
         return names;
-    };  
+    };
 
     return (
 
         <section className='containerFilms'>
+            <div className='pageTitle'>
+                <span>Home</span>
+            </div>
+            {response.map((item: IFilmList) => (
+                <div className='card'>
             {response.map((item: IFilmList, index: number) => (
                 <div className='card' key={item.movieId}>
                     <div className='subTitle genders'>

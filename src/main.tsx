@@ -8,6 +8,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import SignUp from './pages/SignUp/SignUp'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path='/recently_watched' element={<TopMovies />} />
         <Route path='/top_movies' element={<TopMovies />} />
         <Route path='/favorites' element={<App />} />
+        <Route path='/sign' element={<SignUp  />} />
       </Routes>
     </Router>
   </React.StrictMode>,
