@@ -110,7 +110,7 @@ const TopMovies = () => {
                                                 )
                                             })}
                                         </div>
-                                        <div className="moviePhoto" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: '29.3 ', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                        <div className="moviePhoto" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
 
                                         </div>
                                         <div className="runTime">

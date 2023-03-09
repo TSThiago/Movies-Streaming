@@ -35,21 +35,18 @@
         flex-wrap: wrap;
         gap: 1vw;
         margin-bottom: 20vh;
-        background-image: linear-gradient(to bottom,
-                #323232,
-                #020202);
         background-position: center;
-
 
         .firstMovie {
             width: 59.67vw;
             height: 65vh;
-
+            border-radius: 1em;
         }
 
         .viewMoreMovie {
             width: 29.33vw;
             height: 65vh;
+            border-radius: 1em;
         }
 
         .viewMoreCategories {
@@ -94,7 +91,7 @@
                     #323232,
                     #020202);
             background-position: center;
-
+            border-radius: 1em;
         }
 
         .categories {
