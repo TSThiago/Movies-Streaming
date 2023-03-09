@@ -17,10 +17,10 @@ const NavBar = () => {
             <header>
                 <div className="links">
                     <a className="logo">Watchflix</a>
-                    <a>Home</a>
-                    <a>Top Movies</a>
-                    <a>Recently Watch</a>
-                    <a>Favorites</a>
+                    <a href='/'>Home</a>
+                    <a href='/top_movies'>Top Movies</a>
+                    <a href='/recently_watched'>Recently Watch</a>
+                    <a href='/favorites'>Favorites</a>
                 </div>
                 <div className='user'>
                     <input type='text'></input>
