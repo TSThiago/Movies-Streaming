@@ -6,6 +6,12 @@
     justify-content: center;
     gap: 1rem;
 
+    .pageTitle {
+        width: 90vw;
+        font-size: 48px;
+        font-weight: 500;
+    }
+    
     .card {
         width: (calc(90% / 3));
         display: flex;

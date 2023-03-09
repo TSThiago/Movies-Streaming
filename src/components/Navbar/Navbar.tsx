@@ -16,10 +16,10 @@ const NavBar = () => {
         <>
             <header>
                 <div className="links">
-                    <a className="logo">Watchflix</a>
+                    <a href='/' className="logo">Watchflix</a>
                     <a href='/'>Home</a>
                     <a href='/top_movies'>Top Movies</a>
-                    <a href='/recently_watched'>Recently Watch</a>
+                    <a href='/recently_watched'>Recently Watched</a>
                     <a href='/favorites'>Favorites</a>
                 </div>
                 <div className='user'>
@@ -32,7 +32,7 @@ const NavBar = () => {
                         </>
                     ): (
                         <>
-                        <button onClick={() => setLogged(true)}>Login</button>
+                        <a href='/sign'>Login</a>
                         </>
                     )}
 
