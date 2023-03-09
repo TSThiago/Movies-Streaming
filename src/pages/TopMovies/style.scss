@@ -6,7 +6,7 @@
 }
 
 .topMovies {
-    width: 85vw;
+    width: 90vw;
     margin: 0 auto;
 
     .topMoviesHeader {
@@ -16,7 +16,6 @@
         color: white;
 
         span {
-
             font-size: 48px;
             font-weight: 500;
         }
@@ -30,21 +29,67 @@
         }
     }
 
+
     .movies {
         display: flex;
         flex-wrap: wrap;
         gap: 1vw;
         margin-bottom: 20vh;
+        background-image: linear-gradient(to bottom,
+                #323232,
+                #020202);
+        background-position: center;
+
 
         .firstMovie {
-            width: 56vw;
+            width: 59.67vw;
+            height: 65vh;
+
+        }
+
+        .viewMoreMovie {
+            width: 29.33vw;
             height: 65vh;
         }
 
-        .movie {
-            width: 27.5vw;
-            height: 65vh;
+        .viewMoreCategories {
+            margin-top: 2vh;
+            height: 10vh;
+            display: flex;
+            flex-wrap: wrap;
+        }
 
+        .viewMoreCategory {
+            display: grid;
+            place-content: center;
+            height: 27px;
+            margin: 2vh 0 0 2vw;
+            border-radius: 16px;
+            padding: 2px 8px;
+            background-color: #FED530;
+        }
+
+        .viewMoreRunTime {
+            color: #CCCCCC;
+            margin-top: 33vh;
+            margin-left: 1vw;
+            display: flex;
+            gap: 1vw;
+            align-items: center;
+            height: 25px;
+        }
+
+        .viewMoreTitle {
+            color: #CCCCCC;
+            margin-top: 2vh;
+            margin-left: 1vw;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .movie {
+            width: 29.33vw;
+            height: 65vh;
             background-image: linear-gradient(to bottom,
                     #323232,
                     #020202);
@@ -53,27 +98,31 @@
         }
 
         .categories {
-            justify-content: center;
+            margin-top: 2vh;
             height: 10vh;
             display: flex;
             flex-wrap: wrap;
-            flex-direction: row;
         }
 
         .category {
             display: grid;
             place-content: center;
-            width: 150px;
             height: 27px;
-            margin: 2vh 0 0 2vw;
+            margin: 2vh auto;
             border-radius: 16px;
             padding: 2px 8px;
             background-color: #FED530;
         }
 
+        .moviePhoto {
+            margin-top: 7vh;
+            height: 27vh;
+        }
+
         .runTime {
             color: #CCCCCC;
-            margin: 35vh 0 0 2vw;
+            margin-top: 2vh;
+            margin-left: 1vw;
             display: flex;
             gap: 1vw;
             align-items: center;
@@ -81,11 +130,12 @@
         }
 
         .title {
-            color: #FED530;
+            color: #CCCCCC;
             margin-top: 2vh;
-            margin-left: 2vw;
+            margin-left: 1vw;
             font-size: 32px;
             font-weight: 700;
         }
+
     }
 }

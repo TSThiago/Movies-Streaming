@@ -55,44 +55,41 @@ const TopMovies = () => {
                 <div className="movies">
                     {viewMore ? (
                         <>
-                            <div className="firstMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topOne.background + ')', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                                <div className="categories">
+                            <div className="firstMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topOne.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                <div className="viewMoreCategories">
                                     {topOne.tagsGenre.map(genre => {
                                         return (
-                                            <div className="category" >
+                                            <div className="viewMoreCategory" >
                                                 <span>{genre}</span>
                                             </div>
                                         )
                                     })}
                                 </div>
-
-                                <div className="runTime">
+                                <div className="viewMoreRunTime">
                                     <img src={clock} alt="Clock icon" />
                                     <span>1hr 24mins</span>
                                 </div>
-                                <div className="title">
+                                <div className="viewMoreTitle">
                                     <span>{topOne.title}</span>
                                 </div>
                             </div>
                             {topFive.map((movie: IFilmList) => {
                                 return (
-                                    <div key={movie.movieId} className="movie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + movie.background + ')', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                                        <div className="categories">
+                                    <div key={movie.movieId} className="viewMoreMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + movie.background + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                        <div className="viewMoreCategories">
                                             {movie.tagsGenre.map(genre => {
                                                 return (
-                                                    <div className="category" >
+                                                    <div className="viewMoreCategory" >
                                                         <span>{genre}</span>
                                                     </div>
                                                 )
                                             })}
                                         </div>
-
-
-                                        <div className="runTime">
+                                        <div className="viewMoreRunTime">
                                             <img src={clock} alt="Clock icon" />
                                             <span>1hr 24mins</span>
                                         </div>
-                                        <div className="title">
+                                        <div className="viewMoreTitle">
                                             <span>{movie.title}</span>
                                         </div>
                                     </div>
@@ -103,7 +100,7 @@ const TopMovies = () => {
                         <>
                             {topMovies.map((topMovie: IFilmList) => {
                                 return (
-                                    <div key={topMovie.movieId} className="movie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                                    <div key={topMovie.movieId} className="movie" >
                                         <div className="categories">
                                             {topMovie.tagsGenre.map(genre => {
                                                 return (
@@ -113,7 +110,9 @@ const TopMovies = () => {
                                                 )
                                             })}
                                         </div>
+                                        <div className="moviePhoto" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: '29.3 ', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
 
+                                        </div>
                                         <div className="runTime">
                                             <img src={clock} alt="Clock icon" />
                                             <span>1hr 24mins</span>
