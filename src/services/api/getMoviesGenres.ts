@@ -1,6 +1,7 @@
 import React from 'react'
 import { Genres } from '../../types/dataListFilms.interface'
 
+
 const getMoviesGenres = async () => {
     const keyCode = "fc623a5ca96ebc475b73176b0c3d5b4b"
 
