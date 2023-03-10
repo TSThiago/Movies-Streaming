@@ -1,11 +1,193 @@
+import { useState, useContext } from 'react'
 import NavBar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import './style.scss'
+import { useFormik } from 'formik';
+import { iUser, iLoginUser } from '../../types/user.interface';
+import getUsers from '../../services/api/getUsers';
+import { StorageContext } from '../../contexts/StorageContext';
 
 const SignUp = () => {
+    const [signUp, setSignUp] = useState(true)
+    const [userEmail, setUserEmail] = useState('')
+    const [userPassword, setUserPassword] = useState('')
+    const { setLogged } = useContext(StorageContext)
+
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+            password: '',
+            email: '',
+            phone: '',
+            profilePic: ''
+        }, onSubmit: (values) => {
+            let newUser: object = values
+            let myInit = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            };
+            fetch('https://apigenerator.dronahq.com/api/P93xyegJ/users', myInit)
+                .then(function (response) {
+                    return response.json();
+                })
+            alert(values.firstName + ' ' + values.lastName + ' successfully registered!')
+        }, validate: (values) => {
+            const errors: { firstName?: string, lastName?: string, password?: string, email?: string, phone?: string, profilePic?: string } = {};
+            if (!values.firstName) {
+                errors.firstName = "Enter your name!"
+            } else if (/[^a-zA-ZÀ-ü]/i.test(values.firstName)) {
+                errors.firstName = "Invalid digits!"
+            }
+
+            if (!values.lastName) {
+                errors.lastName = "Enter your last name!"
+            } else if (/[^a-zA-ZÀ-ü]/i.test(values.lastName)) {
+                errors.lastName = "Invalid digits!"
+            }
+
+            if (!values.password) {
+                errors.password = "Enter your password!"
+            } else if (values.password.length < 8) {
+                errors.password = "Password too short!"
+            }
+
+            if (!values.email) {
+                errors.email = "Enter your email!"
+            }
+
+            if (!values.phone) {
+                errors.phone = "Enter your phone number!"
+            } else if (!parseInt(values.phone)) {
+                errors.phone = "Only numbers!"
+            }
+
+            if (!values.profilePic) {
+                errors.profilePic = "Enter your profile picture URL!"
+            }
+
+            return errors;
+        }
+    })
+
+    const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
+        setUserEmail(e.currentTarget.value)
+    }
+
+    const handlePassword = (e: React.FormEvent<HTMLInputElement>) => {
+        setUserPassword(e.currentTarget.value)
+    }
+
+    const handleUser = async () => {
+        getUsers()
+            .then(function (users) {
+                let newUser: iLoginUser = {
+                    email: userEmail,
+                    password: userPassword
+                }
+                users.map((user: iUser) => {
+                    if (user.email !== newUser.email) {
+                        alert('Wrong email!')
+                    }
+
+                    else if (user.email === newUser.email && user.password !== newUser.password) {
+                        alert('Wrong password!')
+                    } else {
+                        setLogged(true)
+                        alert('Succesfully Log in!')
+                        window.location.replace('http://127.0.0.1:5173/')
+                    }
+                })
+            })
+
+    }
+
     return (
         <>
             <NavBar></NavBar>
-            
+            <section className="signUpContainer">
+                <div className="signUpHeader">
+                    {signUp ? (
+                        <>
+                            <div onClick={() => setSignUp(true)} style={{ backgroundColor: '#111111' }} className='signUpBtn'>
+                                <span>Sign up</span>
+                            </div>
+                            <div onClick={() => setSignUp(false)} style={{ backgroundColor: '#313131' }} className='loginBtn'>
+                                <span>Log in</span>
+                            </div>
+                        </>
+
+                    ) : (
+                        <>
+                            <div onClick={() => setSignUp(true)} style={{ backgroundColor: '#313131' }} className='signUpBtn'>
+                                <span>Sign up</span>
+                            </div>
+                            <div onClick={() => setSignUp(false)} style={{ backgroundColor: '#111111' }} className='loginBtn'>
+                                <span>Log in</span>
+                            </div>
+                        </>
+                    )}
+
+                </div>
+                {signUp ? (
+                    <div className='signUp'>
+                        <form onSubmit={formik.handleSubmit}>
+                            <h2>Sign up</h2>
+                            <div className='inputs'>
+                                <div className='smallInputs'>
+                                    <label className='smallLabel' htmlFor="firstName">First Name</label>
+                                    <input onChange={formik.handleChange} defaultValue={formik.values.firstName} className='smallInput' type="text" id='firstName' />
+                                    <p>{formik.errors.firstName}</p>
+                                </div>
+                                <div className='smallInputs'>
+                                    <label className='smallLabel' htmlFor="lastName">Last Name</label>
+                                    <input onChange={formik.handleChange} defaultValue={formik.values.lastName} className='smallInput' type="text" id='lastName' />
+                                    <p>{formik.errors.lastName}</p>
+                                </div>
+                            </div>
+
+
+                            <label htmlFor="password">Password</label>
+                            <input onChange={formik.handleChange} defaultValue={formik.values.password} type="password" id='password' />
+                            <p>{formik.errors.password}</p>
+                            <label htmlFor="email">Email address</label>
+                            <input onChange={formik.handleChange} defaultValue={formik.values.email} type="email" id='email' />
+                            <p>{formik.errors.email}</p>
+                            <div className='inputs'>
+                                <div className='smallInputs'>
+                                    <label className='smallLabel' htmlFor="phone">Phone</label>
+                                    <input onChange={formik.handleChange} defaultValue={formik.values.phone} className='smallInput' type='tel' id='phone' />
+                                    <p>{formik.errors.phone}</p>
+                                </div>
+                                <div>
+                                    <label className='smallLabel' htmlFor="picture">Profile Picture URL</label>
+                                    <input onChange={formik.handleChange} defaultValue={formik.values.profilePic} className='smallInput' type="text" id='profilePic' />
+                                    <p>{formik.errors.profilePic}</p>
+                                </div>
+                            </div>
+                            <button type='submit' >Sign up</button>
+                        </form>
+
+                    </div>
+                ) : (
+                    <div className='logIn'>
+                        <div className='logInInputs'>
+                            <h2>Log in</h2>
+                            <label htmlFor="email">Email address</label>
+                            <input onChange={handleEmail} defaultValue={userEmail} type="email" id='email' />
+                            <label htmlFor="password">Password</label>
+                            <input onChange={handlePassword} defaultValue={userPassword} type="password" id='password' />
+                            <button onClick={handleUser}>Log in</button>
+                        </div>
+
+                    </div>
+                )}
+
+            </section>
             <Footer></Footer>
         </>
     )

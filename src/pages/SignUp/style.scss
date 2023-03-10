@@ -1,0 +1,184 @@
+.signUpContainer {
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 5vh auto;
+    width: 732px;
+    background-color: #525252;
+    border-radius: 24px;
+
+    .signUpHeader {
+        display: flex;
+        margin: 8vh auto;
+        border-radius: 24px;
+
+        .signUpBtn {
+            cursor: pointer;
+            border-bottom-left-radius: 16px;
+            border-top-left-radius: 16px;
+            display: grid;
+            place-content: center;
+            width: 302px;
+            height: 56px;
+            font-size: 18px;
+            font-weight: 400;
+            background-color: #111111;
+        }
+        
+        .loginBtn {
+            cursor: pointer;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+            display: grid;
+            place-content: center;
+            width: 302px;
+            height: 56px;
+            font-size: 18px;
+            font-weight: 400;
+            background-color: #313131;
+        }
+    }
+
+    .signUp {
+        display: flex;
+        justify-content: center;
+        width: 10vw;
+        font-size: 24px;
+        font-weight: 500;
+        margin: 0 auto;
+
+        form {
+            width: 454px;
+            float: left;
+            justify-content: center;
+
+            p {
+                height: 24px;
+                font-size: 21px;
+            }
+
+
+            h2 {
+                display: flex;
+                justify-content: center;
+                width: 454px;
+                margin-bottom: 8vh;
+            }
+
+
+            label {
+                margin-top: 24px;
+                display: flex;
+                justify-content: start;
+                font-size: 16px;
+                font-weight: 400;
+                height: 24px;
+                width: 454px;
+            }
+
+            .inputs {
+                display: flex;
+                gap: 14px
+            }
+
+            .smallInputs {
+                display: flex;
+                flex-direction: column;
+                width: 454px;
+                height: 160px;
+            }
+
+            .smallLabel {
+                margin-top: 24px;
+                width: 220px;
+            }
+
+            input {
+                background-color: transparent;
+                border-style: solid;
+                border-width: 2px;
+                border-color: black;
+                color: white;
+                font-size: 24px;
+                height: 56px;
+                width: 454px;
+                border-radius: 12px;
+                margin: 2vh 0;
+            }
+
+            .smallInput {
+                width: 220px;
+            }
+
+            button {
+                cursor: pointer;
+                background-color: black;
+                color: white;
+                font-size: 22px;
+                width: 454px;
+                height: 64px;
+                border-radius: 40px;
+                margin: 8vh 0;
+            }
+        }
+    }
+
+    .logIn {
+        display: flex;
+        justify-content: center;
+        width: 10vw;
+        font-size: 24px;
+        font-weight: 500;
+        margin: 0 auto;
+
+        .logInInputs {
+            width: 454px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            h2 {
+                display: flex;
+                justify-content: center;
+                width: 454px;
+                margin-bottom: 8vh;
+            }
+
+            label {
+                display: flex;
+                justify-content: start;
+                font-size: 16px;
+                font-weight: 400;
+                height: 24px;
+                width: 454px;
+            }
+
+            input {
+                background-color: transparent;
+                border-style: solid;
+                border-width: 2px;
+                border-color: black;
+                color: white;
+                font-size: 24px;
+                width: 454px;
+                height: 56px;
+                border-radius: 12px;
+                margin: 2vh 0;
+            }
+
+            button {
+                cursor: pointer;
+                background-color: black;
+                color: white;
+                font-size: 22px;
+                width: 454px;
+                height: 64px;
+                border-radius: 40px;
+                margin-bottom: 8vh;
+            }
+        }
+
+
+    }
+}

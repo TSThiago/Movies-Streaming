@@ -9,18 +9,21 @@ import {
   Route
 } from 'react-router-dom';
 import SignUp from './pages/SignUp/SignUp'
-
+import { StorageProvider } from './contexts/StorageContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='/recently_watched' element={<TopMovies />} />
-        <Route path='/top_movies' element={<TopMovies />} />
-        <Route path='/favorites' element={<App />} />
-        <Route path='/sign' element={<SignUp  />} />
-      </Routes>
-    </Router>
+    <StorageProvider>
+      <Router>
+        <Routes>
+          <Route path='/' element={<App />} />
+          <Route path='/recently_watched' element={<TopMovies />} />
+          <Route path='/top_movies' element={<TopMovies />} />
+          <Route path='/favorites' element={<App />} />
+          <Route path='/sign' element={<SignUp />} />
+        </Routes>
+      </Router>
+    </StorageProvider>
+
   </React.StrictMode>,
 )
