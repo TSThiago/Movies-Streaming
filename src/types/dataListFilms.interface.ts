@@ -1,8 +1,24 @@
+// export interface IAction {
+//     type: string,
+//     payload: any,
+// }
+
+// export interface IStateFilme {
+//     backgroud: string;
+//     title: string;
+//     descrition: string;
+//     genre: number[];
+//     rating: number;
+//     duration: number;
+// }
+
 export interface IFilmList {
     background: string;
     title: string;
     tagsGenre: number[];
-    movieId: number
+    movieId: number;
+    descrition: string;
+    rating: number;
 }
 
 export interface Films {

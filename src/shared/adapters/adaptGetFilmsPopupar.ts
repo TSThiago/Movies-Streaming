@@ -7,7 +7,9 @@ const adaptGetFilmsPopupar = (film: Films) : IFilmList[] => {
             background: item.backdrop_path,
             title: item.original_title,
             tagsGenre: item.genre_ids,
-            movieId: item.id
+            movieId: item.id,
+            descrition: item.overview,
+            rating: item.vote_average,
         }
     })
 
