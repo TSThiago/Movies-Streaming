@@ -46,14 +46,15 @@ const HomeGalleryFilms = () => {
     };
 
     return (
-
         <section className='containerFilms'>
+
             <FilmContext.Provider value={{
                 response
 
             }} >
                 <div className='pageTitle'>
                     <span>Home</span>
+
                 </div>
                 {response.map((item: IFilmList, index: number) => (
                     <div className='card' key={item.movieId}>

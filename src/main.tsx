@@ -9,6 +9,7 @@ import {
   Route
 } from 'react-router-dom';
 import SignUp from './pages/SignUp/SignUp'
+
 import Movies from './pages/movies/Movies'
 
 
@@ -24,5 +25,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path='/Movies/:id/:genre' element={<Movies />} />
       </Routes>
     </Router>
+
   </React.StrictMode>,
 )

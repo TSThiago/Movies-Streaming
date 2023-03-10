@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useContext } from 'react'
 import './style.scss'
 import searchIcon from '../../assets/search_icon.png'
 import dogo from '../../assets/dogo.jpg'
 import getMovies from '../../services/api/getTopMovies'
+import { StorageContext } from '../../contexts/StorageContext'
 
 
 const NavBar = () => {
-    const [logged, setLogged] = useState(true)
+    let {logged, setLogged} = useContext(StorageContext)
 
     useEffect(() => {
         getMovies()
@@ -24,7 +25,7 @@ const NavBar = () => {
                 </div>
                 <div className='user'>
                     <input type='text'></input>
-                    <button onClick={() => setLogged(false)}><img src={searchIcon} alt='Search icon image'></img></button>
+                    <button><img src={searchIcon} alt='Search icon image'></img></button>
                     {logged ? (
                         <>
                             <img className='userImg' src={dogo}></img>
