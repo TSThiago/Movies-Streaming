@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path='/top_movies' element={<TopMovies />} />
         <Route path='/favorites' element={<App />} />
         <Route path='/sign' element={<SignUp  />} />
-        <Route path='/Movies/:id/:genre' element={<Movies />} />
+        <Route path='/Movies/:id/:genre/:runTime' element={<Movies />} />
       </Routes>
     </Router>
 
