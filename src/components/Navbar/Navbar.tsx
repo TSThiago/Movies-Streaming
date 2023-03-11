@@ -4,10 +4,11 @@ import searchIcon from '../../assets/search_icon.png'
 import dogo from '../../assets/dogo.jpg'
 import getMovies from '../../services/api/getTopMovies'
 import { StorageContext } from '../../contexts/StorageContext'
-
-
+import { useSelector } from 'react-redux'
+import { iState } from '../../types/redux.interface'
+import {Link} from 'react-router-dom'
 const NavBar = () => {
-    let {logged, setLogged} = useContext(StorageContext)
+    const isLogged = useSelector((state : iState) => state.user.isLogged)
 
     useEffect(() => {
         getMovies()
@@ -17,23 +18,24 @@ const NavBar = () => {
         <>
             <header>
                 <div className="links">
-                    <a href='/' className="logo">Watchflix</a>
-                    <a href='/'>Home</a>
-                    <a href='/top_movies'>Top Movies</a>
-                    <a href='/recently_watched'>Recently Watched</a>
-                    <a href='/favorites'>Favorites</a>
+                    <Link to='/' className="logo">Watchflix</Link>
+                    <Link to='/'>Home</Link>
+                    <Link to='/top_movies'>Top Movies</Link>
+                    <Link to='/recently_watched'>Recently Watched</Link>
+                    <Link to='/favorites'>Favorites</Link>
                 </div>
                 <div className='user'>
                     <input type='text'></input>
                     <button><img src={searchIcon} alt='Search icon image'></img></button>
-                    {logged ? (
+
+                    {isLogged ? (
                         <>
                             <img className='userImg' src={dogo}></img>
                             <span>Dogo</span>
                         </>
                     ): (
                         <>
-                        <a href='/sign'>Login</a>
+                        <Link to='/sign'>Login</Link>
                         </>
                     )}
 

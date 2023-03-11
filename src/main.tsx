@@ -8,23 +8,27 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import store from './store'
 import SignUp from './pages/SignUp/SignUp'
-
 import Movies from './pages/movies/Movies'
+import { Provider } from 'react-redux'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='/recently_watched' element={<TopMovies />} />
-        <Route path='/top_movies' element={<TopMovies />} />
-        <Route path='/favorites' element={<App />} />
-        <Route path='/sign' element={<SignUp  />} />
-        <Route path='/Movies/:id/:genre' element={<Movies />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path='/' element={<App />} />
+          <Route path='/recently_watched' element={<TopMovies />} />
+          <Route path='/top_movies' element={<TopMovies />} />
+          <Route path='/favorites' element={<App />} />
+          <Route path='/sign' element={<SignUp />} />
+          <Route path='/Movies/:id/:genre' element={<Movies />} />
+        </Routes>
+      </Router>
+    </Provider>
+
 
   </React.StrictMode>,
 )
