@@ -6,7 +6,6 @@ import getMoviesGenres from '../../services/api/getMoviesGenres'
 import clock from "../../assets/clock.png"
 import getDetails from '../../services/api/getDetails'
 import moment from 'moment'
-import { FilmContext } from '../../contexts/contexts'
 
 const HomeGalleryFilms = () => {
 
@@ -46,12 +45,7 @@ const HomeGalleryFilms = () => {
     };
 
     return (
-        <section className='containerFilms'>
-
-            <FilmContext.Provider value={{
-                response
-
-            }} >
+        <section className='containerFilms'>           
                 <div className='pageTitle'>
                     <span>Home</span>
 
@@ -64,7 +58,7 @@ const HomeGalleryFilms = () => {
                             ))}
                         </div>
                         <div className='containerImageFilm'>                            
-                                <a href={`/Movies/${item.movieId}/${encodeURIComponent(getGenreNames(item.tagsGenre).join(','))}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/w500/${item.background}`}
+                                <a href={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/w500/${item.background}`}
                                     alt="imageHome" /></a>
                           
                         </div>
@@ -77,7 +71,6 @@ const HomeGalleryFilms = () => {
                     </div>
 
                 ))}
-            </FilmContext.Provider>
         </section>
     )
 }

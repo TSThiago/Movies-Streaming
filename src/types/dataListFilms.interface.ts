@@ -1,16 +1,26 @@
-// export interface IAction {
-//     type: string,
-//     payload: any,
-// }
+export interface Videos {
+    id:      number;
+    results: Result[];
+}
 
-// export interface IStateFilme {
-//     backgroud: string;
-//     title: string;
-//     descrition: string;
-//     genre: number[];
-//     rating: number;
-//     duration: number;
-// }
+export interface Result {
+    iso_639_1:    string;
+    iso_3166_1:   string;
+    name:         string;
+    key:          string;
+    site:         string;
+    size:         number;
+    type:         string;
+    official:     boolean;
+    published_at: Date;
+    id:           string;
+}
+
+export interface IVideoList {
+    key: string;
+    type: string;
+    site: string;
+}
 
 export interface IFilmList {
     background: string;
