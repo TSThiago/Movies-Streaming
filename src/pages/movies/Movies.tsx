@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
 import NavBar from '../../components/Navbar/Navbar'
 import getMoviesPopular from '../../services/api/getMoviesPopular'
-import { IFilmList, IVideoList } from '../../types/dataListFilms.interface'
+import getTopMovies from '../../services/api/getTopMovies'
+import { iFavoriteMovie, IFilmList, IVideoList } from '../../types/dataListFilms.interface'
 import "./style.scss"
 import heart from "../../assets/heart.svg"
 import btnPlay from "../../assets/btnPlay.svg"
@@ -14,7 +15,6 @@ import iconPlay from "../../assets/iconPlay.svg"
 import getVideos from '../../services/api/getVideos'
 
 const Movies = () => {
-
     const { id, genre, runTime } = useParams<{ id: string, genre: string, runTime: string }>();
     const genres = genre ? genre.split(', ') : [];
     const [response, setResponse] = useState<IFilmList[]>([])
@@ -25,8 +25,9 @@ const Movies = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const resultMovies = await getMoviesPopular()
-            setResponse(resultMovies)
+            const popularMovies = await getMoviesPopular()
+            const topMovies = await getTopMovies()
+            setResponse(popularMovies.concat(topMovies))
         }
         fetchData()
     }, [])
@@ -53,17 +54,36 @@ const Movies = () => {
         filterVideos()
     }, [responseVideos])
 
-    console.log(responseVideos)
-    console.log(moviesVideos)
+    const addToFavorites = (movie : IFilmList, userId : number) => {
+        let newFavoriteMovie : iFavoriteMovie = {
+            movieId: movie.movieId,
+            userId: userId
+        }
+        let myInit = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newFavoriteMovie)
+        };
+        fetch('https://apigenerator.dronahq.com/api/4sHK6s2W/users_favorite', myInit)
+            .then(function (response) {
+                return response.json();
+            })
+    }
+
+    // console.log(responseVideos)
+    // console.log(moviesVideos)
 
     return (
         <>
             <NavBar />
             {film.map((item) => (
-                <section className='containerFilm'>
+                <section className='containerFilm' style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500/' + item.background, backgroundSize: '100vw', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
                     <div className='Film'>
                         <div className='imageFilm'>
-                            <img className='image' src={`https://image.tmdb.org/t/p/w500/${item.background}`} alt="imageFilm" />
+                            {/* <img className='image' src={`https://image.tmdb.org/t/p/w500/${item.background}`} alt="imageFilm" /> */}
                             <div>
                                 <img className='btnPlay' src={btnPlay} alt="buttonPlay" />
                                 <img className='btnPlayShadow' src={btnPlayShadow} alt="buttonPlayShadow" />
@@ -78,16 +98,16 @@ const Movies = () => {
                             <span>Genre: {genres}</span>
                             <span>Duration: {runTime ? moment.utc().startOf('day').add({ minutes: parseInt(runTime) }).format('HH:mm') : ''}mins</span>
                             <span>Rating: {item.rating}</span>
-                            <span><img className='btnFavorites' src={heart} alt="heartFavorites" /></span>
+                            <span onClick={() => addToFavorites(item)}>< img className='btnFavorites' src={heart} alt="heartFavorites" /></span>
                         </div>
-                        
+
                         <div className='trailers'>
-                        <h2>Trailers:</h2>
+                            <h2>Trailers:</h2>
                             {moviesVideos.map((item) => (
                                 <a target="_blank" href={`https://www.youtube.com/watch?v=${item.key}`} className='trailer'>
                                     <img src={`https://img.youtube.com/vi/${item.key}/maxresdefault.jpg`} alt="imageTrailer" />
                                 </a>
-                            ))}                                                  
+                            ))}
                         </div>
                     </div>
                 </section>

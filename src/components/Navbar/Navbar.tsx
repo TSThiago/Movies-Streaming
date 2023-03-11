@@ -1,18 +1,27 @@
-import { useEffect, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import './style.scss'
 import searchIcon from '../../assets/search_icon.png'
 import dogo from '../../assets/dogo.jpg'
 import getMovies from '../../services/api/getTopMovies'
-import { StorageContext } from '../../contexts/StorageContext'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import store from '../../store'
+import { setLoginAction } from '../../store/user/action'
+
 const NavBar = () => {
-    const isLogged = useSelector((state : iState) => state.user.isLogged)
+    const isLogged = useSelector((state: iState) => state.user.isLogged)
+    const [logoutVisible, setLogoutVisible] = useState(false)
 
     useEffect(() => {
         getMovies()
     }, [])
+
+
+    const logoutUser = () => {
+        store.dispatch(setLoginAction(false))
+        console.log(isLogged)
+    }
 
     return (
         <>
@@ -24,18 +33,23 @@ const NavBar = () => {
                     <Link to='/recently_watched'>Recently Watched</Link>
                     <Link to='/favorites'>Favorites</Link>
                 </div>
-                <div className='user'>
+                <div className='searchBar'>
                     <input type='text'></input>
                     <button><img src={searchIcon} alt='Search icon image'></img></button>
 
                     {isLogged ? (
-                        <>
+                        <div onMouseOver={() => setLogoutVisible(true)} onMouseOut={() => setLogoutVisible(false)} className='user'>
                             <img className='userImg' src={dogo}></img>
-                            <span>Dogo</span>
-                        </>
-                    ): (
+                            {!logoutVisible ? (
+                                <span >Thiago Shibanuma</span>
+                            ) : (
+                                <span onClick={logoutUser} style={{ cursor: 'pointer' }}>Log Out</span>
+                            )}
+
+                        </div>
+                    ) : (
                         <>
-                        <Link to='/sign'>Login</Link>
+                            <Link to='/sign'>Login</Link>
                         </>
                     )}
 

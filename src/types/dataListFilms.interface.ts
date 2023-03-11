@@ -1,3 +1,8 @@
+export interface iFavoriteMovie {
+    movieId: number,
+    userId: number
+}
+
 export interface Videos {
     id:      number;
     results: Result[];

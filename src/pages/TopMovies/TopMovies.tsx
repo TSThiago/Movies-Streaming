@@ -89,7 +89,7 @@ const TopMovies = () => {
                 <div className="movies">
                     {viewMore ? (
                         <>
-                            <Link to={`/Movies/${topOne.movieId}/${encodeURIComponent(getGenreNames(topOne.tagsGenre).join(','))}`}>
+                            <Link to={`/Movies/${topOne.movieId}/${getGenreNames(topOne.tagsGenre).join(',')}/${runTime[0]}`}>
                                 <div key={topOne.movieId} className="firstMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topOne.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                     <div className="viewMoreCategories">
                                         {getGenreNames(topOne.tagsGenre).map(genre => {
@@ -102,7 +102,7 @@ const TopMovies = () => {
                                     </div>
                                     <div className="viewMoreRunTime">
                                         <img src={clock} alt="Clock icon" />
-                                        <span>{moment.utc().add({ minutes: runTime[0] }).format('HH:mm')}</span>
+                                        <span>{moment.utc().startOf('day').add({ minutes: runTime[0] }).format('HH:mm')}</span>
                                     </div>
                                     <div className="viewMoreTitle">
                                         <span>{topOne.title}</span>
@@ -112,7 +112,7 @@ const TopMovies = () => {
 
                             {topFive.map((movie: IFilmList, index: number) => {
                                 return (
-                                    <Link to={`/Movies/${movie.movieId}/${encodeURIComponent(getGenreNames(movie.tagsGenre).join(','))}`}>
+                                    <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index + 1]}`}>
                                         <div key={movie.movieId} className="viewMoreMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + movie.background + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                             <div className="viewMoreCategories">
                                                 {getGenreNames(movie.tagsGenre).map(genre => {
@@ -125,7 +125,7 @@ const TopMovies = () => {
                                             </div>
                                             <div className="viewMoreRunTime">
                                                 <img src={clock} alt="Clock icon" />
-                                                <span>{moment.utc().add({ minutes: runTime[index + 1] }).format('HH:mm')}</span>
+                                                <span>{moment.utc().startOf('day').add({ minutes: runTime[index + 1] }).format('HH:mm')}</span>
                                             </div>
                                             <div className="viewMoreTitle">
                                                 <span>{movie.title}</span>
@@ -140,7 +140,7 @@ const TopMovies = () => {
                         <>
                             {topMovies.map((topMovie: IFilmList, index: number) => {
                                 return (
-                                    <Link to={`/Movies/${topMovie.movieId}/${encodeURIComponent(getGenreNames(topMovie.tagsGenre).join(','))}`}>
+                                    <Link to={`/Movies/${topMovie.movieId}/${getGenreNames(topMovie.tagsGenre).join(',')}/${runTime[index]}`}>
                                         <div key={topMovie.movieId} className="movie" >
                                             <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                                 {getGenreNames(topMovie.tagsGenre).map(genre => {
@@ -153,7 +153,7 @@ const TopMovies = () => {
                                             </div>
                                             <div className="runTime">
                                                 <img src={clock} alt="Clock icon" />
-                                                <span>{moment.utc().add({ minutes: runTime[index] }).format('HH:mm')}</span>
+                                                <span>{moment.utc().startOf('day').add({ minutes: runTime[index] }).format('HH:mm')}</span>
                                             </div>
                                             <div className="title">
                                                 <span>{topMovie.title}</span>
