@@ -6,6 +6,7 @@ import getMoviesGenres from '../../services/api/getMoviesGenres'
 import clock from "../../assets/clock.png"
 import getDetails from '../../services/api/getDetails'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 const HomeGalleryFilms = () => {
 
@@ -58,8 +59,8 @@ const HomeGalleryFilms = () => {
                             ))}
                         </div>
                         <div className='containerImageFilm'>                            
-                                <a href={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/w500/${item.background}`}
-                                    alt="imageHome" /></a>
+                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/w500/${item.background}`}
+                                    alt="imageHome" /></Link>
                           
                         </div>
                         <span className='subTitle duration'>
