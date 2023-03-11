@@ -31,6 +31,7 @@ export interface IFilmList {
     rating: number;
 }
 
+
 export interface Films {
     page: number;
     results: ResultList[];

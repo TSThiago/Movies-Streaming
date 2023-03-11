@@ -3,6 +3,7 @@
     margin: 0;
     border: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 
@@ -10,12 +11,13 @@
 .topMovies {
     width: 90vw;
     margin: 0 auto;
+    color: white;
 
     .topMoviesHeader {
         height: 64px;
         display: flex;
         justify-content: space-between;
-        color: white;
+
 
         span {
             font-size: 48px;
@@ -23,11 +25,17 @@
         }
 
         button {
+            transition-duration: 0.5s;
             background-color: transparent;
             color: #FED530;
             font-weight: 700;
             font-size: 24px;
             cursor: pointer;
+        }
+
+        button:hover {
+            transition-duration: 0.5s;
+            padding-bottom:10px;
         }
     }
 
@@ -52,6 +60,7 @@
         }
 
         .viewMoreCategories {
+            color: black;
             margin-top: 2vh;
             height: 10vh;
             display: flex;
@@ -76,6 +85,10 @@
             gap: 1vw;
             align-items: center;
             height: 25px;
+            font-size: 24px;
+            -webkit-text-stroke-width: 0.5px;
+            -webkit-text-stroke-color: #000;
+
         }
 
         .viewMoreTitle {
@@ -84,6 +97,8 @@
             margin-left: 1vw;
             font-size: 32px;
             font-weight: 700;
+            -webkit-text-stroke-width: 0.7px;
+            -webkit-text-stroke-color: #000;
         }
 
         .movie {
@@ -96,6 +111,7 @@
         }
 
         .categories {
+            color: black;
             border-top-right-radius: 1em;
             border-top-left-radius: 1em;
             height: 27vh;
@@ -112,6 +128,7 @@
             border-radius: 16px;
             padding: 2px 8px;
             background-color: #FED530;
+
         }
 
         .runTime {

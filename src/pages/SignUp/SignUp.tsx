@@ -1,17 +1,19 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import NavBar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import './style.scss'
 import { useFormik } from 'formik';
 import { iUser, iLoginUser } from '../../types/user.interface';
 import getUsers from '../../services/api/getUsers';
-import { StorageContext } from '../../contexts/StorageContext';
+import store from '../../store';
+import { setLoginAction } from '../../store/user/action';
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
     const [signUp, setSignUp] = useState(true)
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
-    const { setLogged } = useContext(StorageContext)
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {
@@ -36,6 +38,8 @@ const SignUp = () => {
                     return response.json();
                 })
             alert(values.firstName + ' ' + values.lastName + ' successfully registered!')
+            setSignUp(false)
+
         }, validate: (values) => {
             const errors: { firstName?: string, lastName?: string, password?: string, email?: string, phone?: string, profilePic?: string } = {};
             if (!values.firstName) {
@@ -74,6 +78,10 @@ const SignUp = () => {
         }
     })
 
+    const loginUser = () => {
+        store.dispatch(setLoginAction(true))
+    }
+
     const handleEmail = (e: React.FormEvent<HTMLInputElement>) => {
         setUserEmail(e.currentTarget.value)
     }
@@ -89,17 +97,18 @@ const SignUp = () => {
                     email: userEmail,
                     password: userPassword
                 }
-                users.map((user: iUser) => {
-                    if (user.email !== newUser.email) {
+                let userFound: boolean = false
+                users.forEach((user: iUser) => {
+                    if (user.email !== newUser.email && !userFound) {
                         alert('Wrong email!')
                     }
-
-                    else if (user.email === newUser.email && user.password !== newUser.password) {
+                    else if (user.email === newUser.email && user.password !== newUser.password && !userFound) {
                         alert('Wrong password!')
-                    } else {
-                        setLogged(true)
+                    } else if (user.email === newUser.email && user.password === newUser.password && !userFound) {
+                        loginUser()
                         alert('Succesfully Log in!')
-                        window.location.replace('http://127.0.0.1:5173/')
+                        userFound = true
+                        navigate("/")
                     }
                 })
             })
@@ -159,7 +168,7 @@ const SignUp = () => {
                             <p>{formik.errors.email}</p>
                             <div className='inputs'>
                                 <div className='smallInputs'>
-                                    <label className='smallLabel' htmlFor="phone">Phone</label>
+                                    <label className='smallLabel' htmlFor="phone">Phone Number</label>
                                     <input onChange={formik.handleChange} defaultValue={formik.values.phone} className='smallInput' type='tel' id='phone' />
                                     <p>{formik.errors.phone}</p>
                                 </div>
@@ -169,7 +178,7 @@ const SignUp = () => {
                                     <p>{formik.errors.profilePic}</p>
                                 </div>
                             </div>
-                            <button type='submit' >Sign up</button>
+                            <button type='submit'>Sign up</button>
                         </form>
 
                     </div>

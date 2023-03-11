@@ -8,13 +8,15 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import store from './store'
 import SignUp from './pages/SignUp/SignUp'
-
 import Movies from './pages/movies/Movies'
+import { Provider } from 'react-redux'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+    <Provider store={store}>
     <Router>
       <Routes>
         <Route path='/' element={<App />} />
@@ -25,6 +27,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path='/Movies/:id/:genre/:runTime' element={<Movies />} />
       </Routes>
     </Router>
-
+    </Provider>
   </React.StrictMode>,
 )
