@@ -1,0 +1,25 @@
+body {
+  font-family: DM Sans;
+  margin: 0;
+  border: 0;
+  text-decoration: none;
+  background-image: linear-gradient(to right,
+      #323232,
+      #020202);
+
+}
+
+::-webkit-scrollbar{
+  width: 15px;
+  background: black;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FED530;
+  border-radius: 10px;
+}

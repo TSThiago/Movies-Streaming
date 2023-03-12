@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './pages/App'
 import TopMovies from './pages/TopMovies/TopMovies'
-import './styles/index.css'
+import './styles/index.scss'
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,6 +12,8 @@ import store from './store'
 import SignUp from './pages/SignUp/SignUp'
 import Movies from './pages/movies/Movies'
 import { Provider } from 'react-redux'
+import RecentlyWatched from './pages/RecentlyWatched/RecentlyWatched'
+import FavoriteMovies from './pages/FavoriteMovies/FavoriteMovies'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -20,9 +22,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Router>
       <Routes>
         <Route path='/' element={<App />} />
-        <Route path='/recently_watched' element={<TopMovies />} />
+        <Route path='/recently_watched' element={<RecentlyWatched />} />
         <Route path='/top_movies' element={<TopMovies />} />
-        <Route path='/favorites' element={<App />} />
+        <Route path='/favorites' element={<FavoriteMovies />} />
         <Route path='/sign' element={<SignUp  />} />
         <Route path='/Movies/:id/:genre/:runTime' element={<Movies />} />
       </Routes>

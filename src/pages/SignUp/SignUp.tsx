@@ -10,7 +10,7 @@ import { setLoginAction } from '../../store/user/action';
 import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
-    const [signUp, setSignUp] = useState(true)
+    const [signUp, setSignUp] = useState(false)
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const navigate = useNavigate()
@@ -78,7 +78,7 @@ const SignUp = () => {
         }
     })
 
-    const loginUser = () => {
+    const loginUserAction = () => {
         store.dispatch(setLoginAction(true))
     }
 
@@ -93,24 +93,23 @@ const SignUp = () => {
     const handleUser = async () => {
         getUsers()
             .then(function (users) {
-                let newUser: iLoginUser = {
+                let loginUser: iLoginUser = {
                     email: userEmail,
                     password: userPassword
                 }
                 let userFound: boolean = false
                 users.forEach((user: iUser) => {
-                    if (user.email !== newUser.email && !userFound) {
-                        alert('Wrong email!')
-                    }
-                    else if (user.email === newUser.email && user.password !== newUser.password && !userFound) {
-                        alert('Wrong password!')
-                    } else if (user.email === newUser.email && user.password === newUser.password && !userFound) {
-                        loginUser()
+                    if (user.email === loginUser.email && user.password === loginUser.password && !userFound) {
+                        loginUserAction()
                         alert('Succesfully Log in!')
                         userFound = true
+                        localStorage.setItem('user', JSON.stringify(user))
                         navigate("/")
                     }
                 })
+                if(userFound === false) {
+                    alert('Email or Password is invalid!')
+                }
             })
 
     }

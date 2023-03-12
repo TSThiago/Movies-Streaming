@@ -1,0 +1,75 @@
+.containerFilms {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: #ffffff;
+    justify-content: center;
+    gap: 1rem;
+
+    .pageTitle {
+        width: 90vw;
+        font-size: 48px;
+        font-weight: 500;
+    }
+    
+    .card {
+        width: (calc(90% / 3));
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #000000 100%);
+        border-radius: 1rem;
+
+        .subTitle {
+            padding: 0.5rem;
+        }
+
+        .genders {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            position: absolute;
+
+            .gender {
+                color: #2E2E2E;
+                font-weight: 400;
+                font-size: 0.87rem;
+                border-radius: 1rem;
+                margin-left: 0.5rem;
+                background-color: #FED530;
+                padding: 0.094rem 0.5rem;
+            }
+        }
+
+        .containerImageFilm{
+            cursor: pointer;
+        }
+
+
+        .imageFilm {
+            width: 100%;
+            height: 75%;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        .duration {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            z-index: 1;
+            top: 75%;
+            position: absolute;
+            font-weight: 900;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+        }
+    }
+}

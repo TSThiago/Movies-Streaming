@@ -40,6 +40,7 @@ const HomeGalleryFilms = () => {
     const getGenreNames = (tags: number[]) => {
         const names = tags.map((tag) => {
             const genreName = genre.find((item) => item.id === tag);
+            console.log(genreName)
             return genreName ? genreName.name : "";
         });
         return names;

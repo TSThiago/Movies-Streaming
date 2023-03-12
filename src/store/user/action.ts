@@ -4,3 +4,10 @@ export const setLoginAction = (logged : boolean) => {
         payload: logged
     }
 }
+
+export const setLogoutAction = (logged : boolean) => {
+    return {
+        type: "SET_LOGOUT",
+        payload: logged
+    }
+}
