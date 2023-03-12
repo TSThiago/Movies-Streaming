@@ -1,4 +1,3 @@
-import React from 'react'
 import { Films, IFilmList } from '../../types/dataListFilms.interface'
 
 const adaptGetFilmsPopupar = (film: Films) : IFilmList[] => {

@@ -5,13 +5,15 @@ import dogo from '../../assets/dogo.jpg'
 import getMovies from '../../services/api/getTopMovies'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import store from '../../store'
-import { setLoginAction } from '../../store/user/action'
+import { setLogoutAction } from '../../store/user/action'
 
 const NavBar = () => {
     const isLogged = useSelector((state: iState) => state.user.isLogged)
     const [logoutVisible, setLogoutVisible] = useState(false)
+    const navigate = useNavigate()
+
 
     useEffect(() => {
         getMovies()
@@ -19,8 +21,9 @@ const NavBar = () => {
 
 
     const logoutUser = () => {
-        store.dispatch(setLoginAction(false))
-        console.log(isLogged)
+        localStorage.setItem('user', JSON.stringify(null))
+        store.dispatch(setLogoutAction(false))
+        navigate("/sign")
     }
 
     return (
@@ -30,8 +33,13 @@ const NavBar = () => {
                     <Link to='/' className="logo">Watchflix</Link>
                     <Link to='/'>Home</Link>
                     <Link to='/top_movies'>Top Movies</Link>
-                    <Link to='/recently_watched'>Recently Watched</Link>
-                    <Link to='/favorites'>Favorites</Link>
+                    {isLogged ? (
+                        <>
+                            <Link to='/recently_watched'>Recently Watched</Link>
+                            <Link to='/favorites'>Favorites</Link>
+                        </>
+                    ) : null}
+
                 </div>
                 <div className='searchBar'>
                     <input type='text'></input>

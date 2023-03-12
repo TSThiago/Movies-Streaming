@@ -36,7 +36,14 @@ export interface IFilmList {
     rating: number;
 }
 
-
+export interface iMovieList {
+    background: string;
+    title: string;
+    tagsGenre: Genre[];
+    movieId: number;
+    descrition: string;
+    rating: number;
+}
 export interface Films {
     page: number;
     results: ResultList[];
@@ -50,6 +57,23 @@ export interface ResultList {
     overview: string;
     release_date: Date;
     genre_ids: number[];
+    id: number;
+    original_title: string;
+    original_language: OriginalLanguage;
+    title: string;
+    backdrop_path: string;
+    popularity: number;
+    vote_count: number;
+    video: boolean;
+    vote_average: number;
+}
+
+export interface Movie {
+    poster_path: string;
+    adult: boolean;
+    overview: string;
+    release_date: Date;
+    genres: Genre[];
     id: number;
     original_title: string;
     original_language: OriginalLanguage;

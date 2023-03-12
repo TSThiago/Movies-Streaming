@@ -11,6 +11,11 @@ const userReducer = (state = USER_LOGIN_INITIAL_VALUES, action: iAction) => {
                 ...state,
                 isLogged: state.isLogged = true
             }
+        case "SET_LOGOUT":
+            return {
+                ...state,
+                isLogged: state.isLogged = false
+            }
         default:
             return state;
     }
