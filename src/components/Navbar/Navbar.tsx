@@ -8,6 +8,7 @@ import { iState } from '../../types/redux.interface'
 import { Link, useNavigate } from 'react-router-dom'
 import store from '../../store'
 import { setLogoutAction } from '../../store/user/action'
+import Swal from 'sweetalert2'
 
 const NavBar = () => {
     const isLogged = useSelector((state: iState) => state.user.isLogged)
@@ -21,6 +22,11 @@ const NavBar = () => {
 
 
     const logoutUser = () => {
+        Swal.fire({
+            text: 'Logout Successful!',
+            icon: 'success',
+            confirmButtonColor: 'black'
+        })
         localStorage.setItem('user', JSON.stringify(null))
         store.dispatch(setLogoutAction(false))
         navigate("/sign")

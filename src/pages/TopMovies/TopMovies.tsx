@@ -47,7 +47,6 @@ const TopMovies = () => {
         const duration = async () => {
             const moviesRunTime = await Promise.all(topMovies.map(topMovie => handleRunTime(topMovie.movieId)))
             setRunTime(moviesRunTime)
-            console.log(runTime)
         }
         duration()
     }, [topMovies])
@@ -62,7 +61,6 @@ const TopMovies = () => {
 
     const handleRunTime = async (id: number) => {
         const result = await getDetails(id)
-        console.log(result)
         return result
     }
 
@@ -70,22 +68,19 @@ const TopMovies = () => {
         <>
             <NavBar></NavBar>
             <section className="topMovies">
-                {viewMore ? (
-                    <>
-                        <div className="topMoviesHeader">
-                            <span>Top Movies</span>
+                <div className="topMoviesHeader">
+                    <span>Top Movies</span>
+                    {viewMore ? (
+                        <>
                             <button onClick={() => setViewMore(false)}>View More</button>
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <div className="topMoviesHeader">
-                            <span>Top Movies</span>
+                        </>
+                    ) : (
+                        <>
                             <button onClick={() => setViewMore(true)}>View Less</button>
-                        </div>
-                    </>
-                )}
+                        </>
+                    )}
 
+                </div>
                 <div className="movies">
                     {viewMore ? (
                         <>

@@ -3,7 +3,7 @@ import Footer from '../../components/Footer/Footer'
 import { useEffect, useState } from 'react'
 import "./style.scss"
 import getMoviesPopular from '../../services/api/getMoviesPopular'
-import { Genre, iFavoriteMovie, IFilmList, iMovieList, ResultList } from '../../types/dataListFilms.interface'
+import { Genre, iUserMovies, IFilmList, iMovieList, ResultList } from '../../types/dataListFilms.interface'
 import getMoviesGenres from '../../services/api/getMoviesGenres'
 import clock from "../../assets/clock.png"
 import getDetails from '../../services/api/getDetails'
@@ -13,11 +13,11 @@ import getFavoriteMovies from '../../services/api/getFavoriteMovies'
 import getTopMovies from '../../services/api/getTopMovies'
 import { iUser } from '../../types/user.interface'
 import getMovieDetails from '../../services/api/getMovieDetails'
-import adaptFavoriteMovies from '../../shared/adapters/adaptFavoriteMovies'
+import adaptMovies from '../../shared/adapters/adaptFavoriteMovies'
 
 const FavoriteMovies = () => {
-    const [allFavoriteMoviesIds, setAllFavoriteMoviesids] = useState<iFavoriteMovie[]>([])
-    const [userFavoriteMoviesIds, setUserFavoriteMoviesIds] = useState<iFavoriteMovie[]>([])
+    const [allFavoriteMoviesIds, setAllFavoriteMoviesids] = useState<iUserMovies[]>([])
+    const [userFavoriteMoviesIds, setUserFavoriteMoviesIds] = useState<iUserMovies[]>([])
     const [userFavoriteMovies, setUserFavoriteMovies] = useState<iMovieList[]>([])
     const [response, setResponse] = useState<IFilmList[]>([])
     const [genre, setGenre] = useState<Genre[]>([])
@@ -37,7 +37,7 @@ const FavoriteMovies = () => {
     }, [])
 
     useEffect(() => {
-        let user: iUser = JSON.parse(localStorage.getItem('user') || '{}')
+        let user: iUser = JSON.parse(localStorage.getItem('user') || '')
         const filtederMovies = filterMovies(user.id)
         setUserFavoriteMoviesIds(filtederMovies)
         const usersMovies = async () => {
@@ -57,7 +57,7 @@ const FavoriteMovies = () => {
 
     const handleFavoriteMovies = async (movieId: number) => {
         const result = await getMovieDetails(movieId)
-        const adaptedFavoriteMovies: iMovieList = adaptFavoriteMovies(result)
+        const adaptedFavoriteMovies: iMovieList = adaptMovies(result)
         return adaptedFavoriteMovies
     }
 

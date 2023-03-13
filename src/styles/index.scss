@@ -10,11 +10,12 @@ body {
 }
 
 ::-webkit-scrollbar{
-  width: 15px;
+  width: 10px;
   background: black;
 }
 
 ::-webkit-scrollbar-track {
+  margin: 5px 0;
   background: black;
   border-radius: 30px;
 }

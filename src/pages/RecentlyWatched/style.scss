@@ -1,0 +1,153 @@
+* {
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+
+
+.topMovies {
+    width: 90vw;
+    margin: 0 auto;
+    color: white;
+
+    .topMoviesHeader {
+        height: 64px;
+        display: flex;
+        justify-content: space-between;
+
+
+        span {
+            font-size: 48px;
+            font-weight: 500;
+        }
+
+        button {
+            transition-duration: 0.5s;
+            background-color: transparent;
+            color: #FED530;
+            font-weight: 700;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transition-duration: 0.5s;
+            padding-bottom:10px;
+        }
+    }
+
+
+    .movies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1vw;
+        margin-bottom: 20vh;
+        background-position: center;
+
+        .firstMovie {
+            width: 59.67vw;
+            height: 65vh;
+            border-radius: 1em;
+        }
+
+        .viewMoreMovie {
+            width: 29.33vw;
+            height: 65vh;
+            border-radius: 1em;
+        }
+
+        .viewMoreCategories {
+            color: black;
+            margin-top: 2vh;
+            height: 10vh;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .viewMoreCategory {
+            display: grid;
+            place-content: center;
+            height: 27px;
+            margin: 2vh 0 0 2vw;
+            border-radius: 16px;
+            padding: 2px 8px;
+            background-color: #FED530;
+        }
+
+        .viewMoreRunTime {
+            color: #CCCCCC;
+            margin-top: 33vh;
+            margin-left: 1vw;
+            display: flex;
+            gap: 1vw;
+            align-items: center;
+            height: 25px;
+            font-size: 24px;
+            -webkit-text-stroke-width: 0.5px;
+            -webkit-text-stroke-color: #000;
+
+        }
+
+        .viewMoreTitle {
+            color: #CCCCCC;
+            margin-top: 2vh;
+            margin-left: 1vw;
+            font-size: 32px;
+            font-weight: 700;
+            -webkit-text-stroke-width: 0.7px;
+            -webkit-text-stroke-color: #000;
+        }
+
+        .movie {
+            width: 29.33vw;
+            height: 49vh;
+            background-image: linear-gradient(to bottom,
+                    #323232,
+                    #020202);
+            border-radius: 1em;
+        }
+
+        .categories {
+            color: black;
+            border-top-right-radius: 1em;
+            border-top-left-radius: 1em;
+            height: 27vh;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            display: grid;
+            place-content: center;
+            height: 27px;
+            margin-top: 2vh;
+            margin-left: 1vw;
+            border-radius: 16px;
+            padding: 2px 8px;
+            background-color: #FED530;
+
+        }
+
+        .runTime {
+            color: #CCCCCC;
+            margin-top: 2vh;
+            margin-left: 1vw;
+            display: flex;
+            gap: 1vw;
+            align-items: center;
+            height: 25px;
+        }
+
+        .title {
+            color: #CCCCCC;
+            margin-top: 2vh;
+            margin-left: 1vw;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+    }
+}

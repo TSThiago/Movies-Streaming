@@ -12,7 +12,7 @@
         width: 100vw;
         flex-direction: row;
         justify-content: space-between;
-        color: white;
+        color: #000;
         flex-wrap: wrap;
 
         .imageFilm {
@@ -35,6 +35,7 @@
             }
 
             .circleContainer {
+                cursor: pointer;
                 position: absolute;
                 left: 7.5%;
                 top: 42.5%;
@@ -58,14 +59,14 @@
                 font-size: 4.5rem;
                 font-weight: 700;
                 -webkit-text-stroke-width: 0.7px;
-                -webkit-text-stroke-color: #000;
+                -webkit-text-stroke-color: white;
             }
 
             span {
                 margin-top: 2vh;
-                font-size: 1.5rem;
+                font-size: 1.7rem;
                 -webkit-text-stroke-width: 0.4px;
-                -webkit-text-stroke-color: #000;
+                -webkit-text-stroke-color: white;
             }
 
             .btnFavorites {
@@ -79,6 +80,7 @@
             gap: 1.5rem;
             
             h2 {
+                color:#FED530;
                 width: 90vw;
             }
 

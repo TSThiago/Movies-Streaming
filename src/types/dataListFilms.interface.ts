@@ -1,4 +1,4 @@
-export interface iFavoriteMovie {
+export interface iUserMovies {
     movieId: number,
     userId: number
 }
