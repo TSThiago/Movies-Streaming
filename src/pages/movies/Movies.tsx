@@ -16,6 +16,7 @@ import getVideos from '../../services/api/getVideos'
 import { iUser } from '../../types/user.interface'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
+import Swal from 'sweetalert2'
 
 const Movies = () => {
     const { id, genre, runTime } = useParams<{ id: string, genre: string, runTime: string }>();
@@ -59,7 +60,12 @@ const Movies = () => {
     }, [responseVideos])
 
     const watchMovie = (movie: IFilmList, userId: number) => {
-        if (userId === null) {
+        if (!!movie && !!userId) {
+            Swal.fire({
+                text: ("Do the Login!"),
+                icon: 'error',
+                confirmButtonColor: 'black'
+            })
             navigate('/sign')
         } else {
             let watchedMovie: iUserMovies = {
@@ -112,8 +118,8 @@ const Movies = () => {
         <>
             <NavBar />
             {film.map((item) => (
-                <section key={item.movieId} className='containerFilm' style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500/' + item.background, backgroundSize: '100vw', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-                    <div  className='Film'>
+                <section key={item.movieId} className='containerFilm' style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original/' + item.background, backgroundSize: '100vw', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+                    <div className='Film'>
                         <div className='imageFilm'>
                             {/* <img className='image' src={`https://image.tmdb.org/t/p/w500/${item.background}`} alt="imageFilm" /> */}
                             <div>

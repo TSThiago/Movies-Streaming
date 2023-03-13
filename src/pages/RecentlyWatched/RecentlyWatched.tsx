@@ -91,7 +91,7 @@ const RecentlyWatched = () => {
                         return (
                             <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index]}`}>
                                 <div key={movie.movieId} className="movie" >
-                                    <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + movie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                    <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + movie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                         {getGenreNames(movie.tagsGenre).map(genre => {
                                             return (
                                                 <div className="category" >

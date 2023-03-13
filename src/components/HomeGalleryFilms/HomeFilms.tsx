@@ -59,7 +59,7 @@ const HomeGalleryFilms = () => {
                             ))}
                         </div>
                         <div className='containerImageFilm'>                            
-                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/w500/${item.background}`}
+                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
                                     alt="imageHome" /></Link>
                           
                         </div>

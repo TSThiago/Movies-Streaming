@@ -85,7 +85,7 @@ const TopMovies = () => {
                     {viewMore ? (
                         <>
                             <Link to={`/Movies/${topOne.movieId}/${getGenreNames(topOne.tagsGenre).join(',')}/${runTime[0]}`}>
-                                <div key={topOne.movieId} className="firstMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topOne.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                <div key={topOne.movieId} className="firstMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + topOne.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                     <div className="viewMoreCategories">
                                         {getGenreNames(topOne.tagsGenre).map(genre => {
                                             return (
@@ -108,7 +108,7 @@ const TopMovies = () => {
                             {topFive.map((movie: IFilmList, index: number) => {
                                 return (
                                     <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index + 1]}`}>
-                                        <div key={movie.movieId} className="viewMoreMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + movie.background + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                        <div key={movie.movieId} className="viewMoreMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + movie.background + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                             <div className="viewMoreCategories">
                                                 {getGenreNames(movie.tagsGenre).map(genre => {
                                                     return (
