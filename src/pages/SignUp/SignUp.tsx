@@ -8,6 +8,7 @@ import getUsers from '../../services/api/getUsers';
 import store from '../../store';
 import { setLoginAction } from '../../store/user/action';
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const [signUp, setSignUp] = useState(false)
@@ -37,7 +38,13 @@ const SignUp = () => {
                 .then(function (response) {
                     return response.json();
                 })
-            alert(values.firstName + ' ' + values.lastName + ' successfully registered!')
+
+            Swal.fire({
+                text: ("User successfully registered!"),
+                icon: 'success',
+                confirmButtonColor: 'black'
+
+            })
             setSignUp(false)
 
         }, validate: (values) => {
@@ -101,14 +108,22 @@ const SignUp = () => {
                 users.forEach((user: iUser) => {
                     if (user.email === loginUser.email && user.password === loginUser.password && !userFound) {
                         loginUserAction()
-                        alert('Succesfully Log in!')
+                        Swal.fire({
+                            text: 'Login Successful!',
+                            icon: 'success',
+                            confirmButtonColor: 'black'
+                        })
                         userFound = true
                         localStorage.setItem('user', JSON.stringify(user))
                         navigate("/")
                     }
                 })
-                if(userFound === false) {
-                    alert('Email or Password is invalid!')
+                if (userFound === false) {
+                    Swal.fire({
+                        text: 'Email or Password is invalid!',
+                        icon: 'error',
+                        confirmButtonColor: 'black'
+                    })
                 }
             })
 

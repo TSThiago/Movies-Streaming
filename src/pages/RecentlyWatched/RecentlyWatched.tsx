@@ -1,172 +1,119 @@
-import Footer from "../../components/Footer/Footer";
-import NavBar from "../../components/Navbar/Navbar";
-import './style.scss'
-import clock from '../../assets/clock.png'
-import getTopMovies from "../../services/api/getTopMovies";
-import { useEffect, useState } from "react";
-import { IFilmList, Genre } from "../../types/dataListFilms.interface";
-import getMoviesGenres from "../../services/api/getMoviesGenres";
-import getDetails from "../../services/api/getDetails";
-import { Link } from "react-router-dom";
-import moment from "moment";
+import NavBar from '../../components/Navbar/Navbar'
+import Footer from '../../components/Footer/Footer'
+import { useEffect, useState } from 'react'
+import "./style.scss"
+import getMoviesPopular from '../../services/api/getMoviesPopular'
+import { Genre, iUserMovies, IFilmList, iMovieList } from '../../types/dataListFilms.interface'
+import getMoviesGenres from '../../services/api/getMoviesGenres'
+import clock from "../../assets/clock.png"
+import getDetails from '../../services/api/getDetails'
+import moment from 'moment'
+import { Link } from 'react-router-dom'
+import getTopMovies from '../../services/api/getTopMovies'
+import { iUser } from '../../types/user.interface'
+import getMovieDetails from '../../services/api/getMovieDetails'
+import adaptMovies from '../../shared/adapters/adaptFavoriteMovies'
+import getWatchedMovies from '../../services/api/getWatchedMovies'
 
 const RecentlyWatched = () => {
-    const [viewMore, setViewMore] = useState(true)
-    const [topFive, setTopFive] = useState<IFilmList[]>([])
-    const [topMovies, setTopMovies] = useState<IFilmList[]>([])
-    const [topOne, setTopOne] = useState<IFilmList>({
-        background: '',
-        title: '',
-        tagsGenre: [],
-        movieId: 0,
-        descrition: '',
-        rating: 0
-    })
+    const [allWatchedMoviesIds, setWatchedMoviesIds] = useState<iUserMovies[]>([])
+    const [userWatchedMoviesIds, setUserWatchedMoviesIds] = useState<iUserMovies[]>([])
+    const [userWatchedMovies, setUserWatchedMovies] = useState<iMovieList[]>([])
+    const [response, setResponse] = useState<IFilmList[]>([])
     const [genre, setGenre] = useState<Genre[]>([])
     const [runTime, setRunTime] = useState<number[]>([])
 
     useEffect(() => {
-        getTopMovies()
-            .then(function (topMovies) {
-                setTopMovies(topMovies)
-                setTopOne(topMovies[0])
-                let index: number = 1
-                let fiveMovies: IFilmList[] = []
-                for (index; index < 5; index++) {
-                    fiveMovies.push(topMovies[index])
-                }
-                setTopFive(fiveMovies)
-            })
-        getMoviesGenres()
-            .then(function (genres) {
-                setGenre(genres.genres)
-            })
+        const fetchData = async () => {
+            const resultWatchedMovies = await getWatchedMovies()
+            const topMovies = await getTopMovies()
+            const resultMovies = await getMoviesPopular()
+            const resultGenre = await getMoviesGenres()
+            setWatchedMoviesIds(resultWatchedMovies)
+            setResponse(resultMovies.concat(topMovies))
+            setGenre(resultGenre.genres)
+        }
+        fetchData()
     }, [])
 
     useEffect(() => {
+        let user: iUser = JSON.parse(localStorage.getItem('user') || '')
+        const filtederMovies = filterMovies(user.id)
+        setUserWatchedMoviesIds(filtederMovies)
+        const usersMovies = async () => {
+            const watchedMovies: iMovieList[] = await Promise.all(userWatchedMoviesIds.map((item) => handleWatchedMovies(item.movieId)))
+            setUserWatchedMovies(watchedMovies.reverse())
+        }
+        usersMovies()
+    }, [response])
+
+    useEffect(() => {
         const duration = async () => {
-            const moviesRunTime = await Promise.all(topMovies.map(topMovie => handleRunTime(topMovie.movieId)))
-            setRunTime(moviesRunTime)
-            console.log(runTime)
+            const runTimes = await Promise.all(userWatchedMovies.map((item) => handleRunTime(item.movieId)))
+            setRunTime(runTimes)
         }
         duration()
-    }, [topMovies])
+    }, [userWatchedMovies])
 
-    const getGenreNames = (tags: number[]) => {
+    const handleWatchedMovies = async (movieId: number) => {
+        const result = await getMovieDetails(movieId)
+        const adaptedWatchedMovies: iMovieList = adaptMovies(result)
+        return adaptedWatchedMovies
+    }
+
+    const filterMovies = (userId: number) => {
+        const filteredWatchedMovies = allWatchedMoviesIds.filter(movie => movie.userId === userId)
+        return filteredWatchedMovies
+    }
+
+    const handleRunTime = async (id: number) => {
+        const result = await getDetails(id)
+        return result
+    }
+
+    const getGenreNames = (tags: Genre[]) => {
         const names = tags.map((tag) => {
-            const genreName = genre.find((item) => item.id === tag);
+            const genreName = genre.find((item) => item.id === tag.id);
             return genreName ? genreName.name : "";
         });
         return names;
     };
 
-    const handleRunTime = async (id: number) => {
-        const result = await getDetails(id)
-        console.log(result)
-        return result
-    }
-
     return (
         <>
             <NavBar></NavBar>
             <section className="topMovies">
-                {viewMore ? (
-                    <>
-                        <div className="topMoviesHeader">
-                            <span>Recently Watched</span>
-                            <button onClick={() => setViewMore(false)}>View More</button>
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <div className="topMoviesHeader">
-                            <span>Recently Watched</span>
-                            <button onClick={() => setViewMore(true)}>View Less</button>
-                        </div>
-                    </>
-                )}
-
+                <div className="topMoviesHeader">
+                    <span>Recently Watched</span>
+                </div>
                 <div className="movies">
-                    {viewMore ? (
-                        <>
-                            <Link to={`/Movies/${topOne.movieId}/${getGenreNames(topOne.tagsGenre).join(',')}/${runTime[0]}`}>
-                                <div key={topOne.movieId} className="firstMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topOne.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-                                    <div className="viewMoreCategories">
-                                        {getGenreNames(topOne.tagsGenre).map(genre => {
+                    {userWatchedMovies.map((movie: iMovieList, index: number) => {
+                        return (
+                            <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index]}`}>
+                                <div key={movie.movieId} className="movie" >
+                                    <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + movie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                        {getGenreNames(movie.tagsGenre).map(genre => {
                                             return (
-                                                <div className="viewMoreCategory" >
+                                                <div className="category" >
                                                     <span>{genre}</span>
                                                 </div>
                                             )
                                         })}
                                     </div>
-                                    <div className="viewMoreRunTime">
+                                    <div className="runTime">
                                         <img src={clock} alt="Clock icon" />
-                                        <span>{moment.utc().startOf('day').add({ minutes: runTime[0] }).format('HH:mm')}</span>
+                                        <span>{moment.utc().startOf('day').add({ minutes: runTime[index] }).format('HH:mm')}</span>
                                     </div>
-                                    <div className="viewMoreTitle">
-                                        <span>{topOne.title}</span>
+                                    <div className="title">
+                                        <span>{movie.title}</span>
                                     </div>
                                 </div>
                             </Link>
-
-                            {topFive.map((movie: IFilmList, index: number) => {
-                                return (
-                                    <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index + 1]}`}>
-                                        <div key={movie.movieId} className="viewMoreMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + movie.background + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-                                            <div className="viewMoreCategories">
-                                                {getGenreNames(movie.tagsGenre).map(genre => {
-                                                    return (
-                                                        <div className="viewMoreCategory" >
-                                                            <span>{genre}</span>
-                                                        </div>
-                                                    )
-                                                })}
-                                            </div>
-                                            <div className="viewMoreRunTime">
-                                                <img src={clock} alt="Clock icon" />
-                                                <span>{moment.utc().startOf('day').add({ minutes: runTime[index + 1] }).format('HH:mm')}</span>
-                                            </div>
-                                            <div className="viewMoreTitle">
-                                                <span>{movie.title}</span>
-                                            </div>
-                                        </div>
-                                    </Link>
-
-                                )
-                            })}
-                        </>
-                    ) : (
-                        <>
-                            {topMovies.map((topMovie: IFilmList, index: number) => {
-                                return (
-                                    <Link to={`/Movies/${topMovie.movieId}/${getGenreNames(topMovie.tagsGenre).join(',')}/${runTime[index]}`}>
-                                        <div key={topMovie.movieId} className="movie" >
-                                            <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-                                                {getGenreNames(topMovie.tagsGenre).map(genre => {
-                                                    return (
-                                                        <div className="category" >
-                                                            <span>{genre}</span>
-                                                        </div>
-                                                    )
-                                                })}
-                                            </div>
-                                            <div className="runTime">
-                                                <img src={clock} alt="Clock icon" />
-                                                <span>{moment.utc().startOf('day').add({ minutes: runTime[index] }).format('HH:mm')}</span>
-                                            </div>
-                                            <div className="title">
-                                                <span>{topMovie.title}</span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                )
-                            })}
-                        </>
-                    )}
-
+                        )
+                    })}
                 </div>
             </section >
+
             <Footer></Footer>
         </>
     )

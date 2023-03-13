@@ -40,7 +40,6 @@ const HomeGalleryFilms = () => {
     const getGenreNames = (tags: number[]) => {
         const names = tags.map((tag) => {
             const genreName = genre.find((item) => item.id === tag);
-            console.log(genreName)
             return genreName ? genreName.name : "";
         });
         return names;
@@ -60,7 +59,7 @@ const HomeGalleryFilms = () => {
                             ))}
                         </div>
                         <div className='containerImageFilm'>                            
-                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/w500/${item.background}`}
+                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
                                     alt="imageHome" /></Link>
                           
                         </div>

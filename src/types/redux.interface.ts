@@ -5,6 +5,6 @@ export interface iAction {
 
 export interface iState {
     user: {
-        isLogged: boolean
+        isLogged: false
     }
 }

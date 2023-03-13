@@ -1,6 +1,6 @@
 import { iMovieList, Movie } from '../../types/dataListFilms.interface'
 
-const adaptFavoriteMovies = (film: Movie): iMovieList => {
+const adaptMovies = (film: Movie): iMovieList => {
     const adaptedMovies: iMovieList = {
             background: film.backdrop_path,
             title: film.original_title,
@@ -13,4 +13,4 @@ const adaptFavoriteMovies = (film: Movie): iMovieList => {
     return adaptedMovies;
 }
 
-export default adaptFavoriteMovies;
+export default adaptMovies;

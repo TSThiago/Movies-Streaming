@@ -7,7 +7,6 @@ const getDetails = async (id: number) => {
 
     const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${keyCode}&language=en-US`)
     const details : Details = await res.json()
-    // console.log(details)
     const result = details.runtime
     return result
 
