@@ -15,7 +15,6 @@ const NavBar = () => {
     const [logoutVisible, setLogoutVisible] = useState(false)
     const navigate = useNavigate()
 
-
     useEffect(() => {
         getMovies()
     }, [])

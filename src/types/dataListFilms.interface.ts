@@ -1,6 +1,12 @@
+export interface iApiMovies { 
+    movieId: number,
+    userId: number,
+    id: number
+}
+
 export interface iUserMovies {
     movieId: number,
-    userId: number
+    userId: number,
 }
 
 export interface Videos {

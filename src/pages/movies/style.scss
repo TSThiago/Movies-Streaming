@@ -12,7 +12,7 @@
         width: 100vw;
         flex-direction: row;
         justify-content: space-between;
-        color: #000;
+        color: white;
         flex-wrap: wrap;
 
         .imageFilm {
@@ -59,14 +59,14 @@
                 font-size: 4.5rem;
                 font-weight: 700;
                 -webkit-text-stroke-width: 0.7px;
-                -webkit-text-stroke-color: white;
+                -webkit-text-stroke-color: black;
             }
 
             span {
                 margin-top: 2vh;
                 font-size: 1.7rem;
-                -webkit-text-stroke-width: 0.3px;
-                -webkit-text-stroke-color: white;
+                -webkit-text-stroke-width: 0.7px;
+                -webkit-text-stroke-color: black;
             }
 
             .btnFavorites {
