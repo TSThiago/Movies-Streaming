@@ -14,6 +14,7 @@ import Movies from './pages/movies/Movies'
 import { Provider } from 'react-redux'
 import RecentlyWatched from './pages/RecentlyWatched/RecentlyWatched'
 import FavoriteMovies from './pages/FavoriteMovies/FavoriteMovies'
+import { SearchMovies } from './pages/SearchMovies/SearchMovies'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -26,7 +27,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path='/top_movies' element={<TopMovies />} />
         <Route path='/favorites' element={<FavoriteMovies />} />
         <Route path='/sign' element={<SignUp  />} />
-        <Route path='/Movies/:id/:genre/:runTime' element={<Movies />} />
+        <Route path='/Movies/:id/:genre/:runTime/:text' element={<Movies />} />
+        <Route path='/SearchMovies/:text' element={<SearchMovies/>}/>
       </Routes>
     </Router>
     </Provider>

@@ -10,21 +10,21 @@ export interface iUserMovies {
 }
 
 export interface Videos {
-    id:      number;
+    id: number;
     results: Result[];
 }
 
 export interface Result {
-    iso_639_1:    string;
-    iso_3166_1:   string;
-    name:         string;
-    key:          string;
-    site:         string;
-    size:         number;
-    type:         string;
-    official:     boolean;
+    iso_639_1: string;
+    iso_3166_1: string;
+    name: string;
+    key: string;
+    site: string;
+    size: number;
+    type: string;
+    official: boolean;
     published_at: Date;
-    id:           string;
+    id: string;
 }
 
 export interface IVideoList {
@@ -153,5 +153,41 @@ export interface SpokenLanguage {
     iso_639_1: string;
     name: string;
 }
+
+export interface ISearchMovies{
+    title: string,
+    descrition: string,
+    genre: number[],
+    rating: number,
+    background: null | string,
+    id: number,
+}
+
+export interface SearchMovies {
+    page: number;
+    results: ResultSearchMovies[];
+    total_results: number;
+    total_pages: number;
+}
+
+export interface ResultSearchMovies {
+    poster_path: null | string;
+    adult: boolean;
+    overview: string;
+    release_date: Date;
+    genre_ids: number[];
+    id: number;
+    original_title: string;
+    original_language: OriginalLanguage;
+    title: string;
+    backdrop_path: null | string;
+    popularity: number;
+    vote_count: number;
+    video: boolean;
+    vote_average: number;
+}
+
+
+
 
 

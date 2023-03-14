@@ -16,11 +16,13 @@ import getWatchedMovies from '../../services/api/getWatchedMovies'
 import getFavoriteMovies from '../../services/api/getFavoriteMovies'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
+import Swal from 'sweetalert2'
+import getSearchMovies from '../../services/api/getSearchMovies'
 
 const Movies = () => {
     const isLogged = useSelector((state: iState) => state.user.isLogged)
-    const { id, genre, runTime, favorited } = useParams<{ id: string, genre: string, runTime: string, favorited: string}>();
     const [favorite, setFavorite] = useState(false)
+    const { id, genre, runTime, text } = useParams<{ id: string, genre: string, runTime: string, text: string }>();
     const genres = genre ? genre.split(', ') : [];
     const [response, setResponse] = useState<IFilmList[]>([])
     const [film, setFilm] = useState<IFilmList[]>([])
