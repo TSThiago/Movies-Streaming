@@ -5,31 +5,43 @@ import Footer from '../../components/Footer/Footer'
 import NavBar from '../../components/Navbar/Navbar'
 import getMoviesPopular from '../../services/api/getMoviesPopular'
 import getTopMovies from '../../services/api/getTopMovies'
-import { iUserMovies, IFilmList, IVideoList } from '../../types/dataListFilms.interface'
+import { iUserMovies, IFilmList, IVideoList, iApiMovies } from '../../types/dataListFilms.interface'
 import "./style.scss"
 import heart from "../../assets/heart.svg"
-import btnPlay from "../../assets/btnPlay.svg"
-import btnPlayShadow from "../../assets/btnPlay2.svg"
-import circle from "../../assets/circleContainer.svg"
-import iconPlay from "../../assets/iconPlay.svg"
+import playButton from "../../assets/playButton.png"
 import getVideos from '../../services/api/getVideos'
 import { iUser } from '../../types/user.interface'
+import Swal from 'sweetalert2'
+import getWatchedMovies from '../../services/api/getWatchedMovies'
+import getFavoriteMovies from '../../services/api/getFavoriteMovies'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
 import Swal from 'sweetalert2'
 import getSearchMovies from '../../services/api/getSearchMovies'
 
 const Movies = () => {
+    const isLogged = useSelector((state: iState) => state.user.isLogged)
+    const [favorite, setFavorite] = useState(false)
     const { id, genre, runTime, text } = useParams<{ id: string, genre: string, runTime: string, text: string }>();
     const genres = genre ? genre.split(', ') : [];
     const [response, setResponse] = useState<IFilmList[]>([])
     const [film, setFilm] = useState<IFilmList[]>([])
+    const [watchedMovies, setWatchedMovies] = useState<iApiMovies[]>([])
+    const [favoriteMovies, setFavoriteMovies] = useState<iApiMovies[]>([])
     const [responseVideos, setResponseVideos] = useState<IVideoList[]>([])
     const [moviesVideos, setMoviesVideos] = useState<IVideoList[]>([])
     const navigate = useNavigate()
 
 
     useEffect(() => {
+        getFavoriteMovies()
+            .then(function (moviesFavorited) {
+                setFavoriteMovies(moviesFavorited)
+            })
+        getWatchedMovies()
+            .then(function (moviesWatched) {
+                setWatchedMovies(moviesWatched)
+            })
         const fetchData = async () => {
             const popularMovies = await getMoviesPopular()
             const topMovies = await getTopMovies()
@@ -37,6 +49,13 @@ const Movies = () => {
         }
         fetchData()
     }, [])
+
+    useEffect(() => {
+        getFavoriteMovies()
+            .then(function (moviesFavorited) {
+                setFavoriteMovies(moviesFavorited)
+            })
+    }, [favorite])
 
     useEffect(() => {
         const filmDetails = async () => {
@@ -61,18 +80,17 @@ const Movies = () => {
     }, [responseVideos])
 
     const watchMovie = (movie: IFilmList, userId: number) => {
+        let watchedMovie: iUserMovies = {
+            movieId: movie.movieId,
+            userId: userId
+        }
         if (!!movie && !!userId) {
-            Swal.fire({
-                text: ("Do the Login!"),
-                icon: 'error',
-                confirmButtonColor: 'black'
+            watchedMovies.map((watchedMovie) => {
+                if (watchedMovie.movieId === movie.movieId && watchedMovie.userId === userId) {
+                    fetch('https://apigenerator.dronahq.com/api/-B7mDXTe/WatchedMovies/' + watchedMovie.id, { method: 'DELETE' })
+                        .then(res => res.json())
+                }
             })
-            navigate('/sign')
-        } else {
-            let watchedMovie: iUserMovies = {
-                movieId: movie.movieId,
-                userId: userId
-            }
             let myInit = {
                 method: 'POST',
                 headers: {
@@ -85,34 +103,80 @@ const Movies = () => {
                 .then(function (response) {
                     return response.json();
                 })
-            navigate('/recently_watched')
+            Swal.fire({
+                text: ("Movie Watched!"),
+                icon: 'success',
+                confirmButtonColor: 'black'
+            })
+        } else {
+            Swal.fire({
+                text: ("Do the Login!"),
+                icon: 'error',
+                confirmButtonColor: 'black'
+            })
+            navigate('/sign')
         }
-
     }
 
     const addToFavorites = (movie: IFilmList, userId: number) => {
-        let newFavoriteMovie: iUserMovies = {
-            movieId: movie.movieId,
-            userId: userId
-        }
-        let myInit = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newFavoriteMovie)
-        };
-        fetch('https://apigenerator.dronahq.com/api/4sHK6s2W/users_favorite', myInit)
-            .then(function (response) {
-                return response.json();
+        if (!isLogged) {
+            Swal.fire({
+                text: ("Do the Login!"),
+                icon: 'error',
+                confirmButtonColor: 'black'
             })
+            navigate('/sign')
+        } else {
+            let favMovie: iUserMovies = {
+                movieId: movie.movieId,
+                userId: userId
+            }
+            let myInit = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(favMovie)
+            };
+            fetch('https://apigenerator.dronahq.com/api/4sHK6s2W/users_favorite', myInit)
+                .then(function (response) {
+                    return response.json();
+                })
+            setFavorite(true)
+            Swal.fire({
+                text: ("Added do Favorites!"),
+                icon: 'success',
+                confirmButtonColor: 'black'
+            })
+        }
+
     }
 
-    const getUserId = () => {
-        const user: iUser = JSON.parse(localStorage.getItem('user') || '')
-        const userId = user.id
-        return userId
+    const removeFromFavorite = (movie: IFilmList) => {
+        favoriteMovies.map((favMovie) => {
+            if (favMovie.movieId === movie.movieId) {
+                console.log(favMovie)
+                fetch('https://apigenerator.dronahq.com/api/4sHK6s2W/users_favorite/' + favMovie.id, { method: 'DELETE' })
+                    .then(res => res.json())
+            }
+        })
+        setFavorite(false)
+        Swal.fire({
+            text: ("Removed from Favorites!"),
+            icon: 'success',
+            confirmButtonColor: 'black'
+        })
+    }
+
+    const getUserId = (): number | null => {
+        if (!isLogged) {
+            return null
+        } else {
+            const user: iUser = JSON.parse(localStorage.getItem('user') || '')
+            const userId = user.id
+            return userId
+        }
     }
 
     return (
@@ -122,12 +186,8 @@ const Movies = () => {
                 <section key={item.movieId} className='containerFilm' style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original/' + item.background, backgroundSize: '100vw', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
                     <div className='Film'>
                         <div className='imageFilm'>
-                            {/* <img className='image' src={`https://image.tmdb.org/t/p/w500/${item.background}`} alt="imageFilm" /> */}
                             <div>
-                                <img className='btnPlay' src={btnPlay} alt="buttonPlay" />
-                                <img className='btnPlayShadow' src={btnPlayShadow} alt="buttonPlayShadow" />
-                                <img onClick={() => watchMovie(item, getUserId())} className='circleContainer' src={circle} alt="circleContainer" />
-                                <img className='iconPlay' src={iconPlay} alt="iconPlay" />
+                                <img onClick={() => watchMovie(item, getUserId())} className='circleContainer' src={playButton} alt="circleContainer" />
                             </div>
                         </div>
 
@@ -137,7 +197,12 @@ const Movies = () => {
                             <span>Genre: {genres}</span>
                             <span>Duration: {runTime ? moment.utc().startOf('day').add({ minutes: parseInt(runTime) }).format('HH:mm') : ''}mins</span>
                             <span>Rating: {item.rating}</span>
-                            <span onClick={() => addToFavorites(item, getUserId())}>< img className='btnFavorites' src={heart} alt="heartFavorites" /></span>
+                            {!favorite ? (
+                                <span onClick={() => addToFavorites(item, getUserId())}>< img className='btnFavorites' src={heart} alt="heartFavorites" /></span>
+                            ) : (
+                                <span onClick={() => removeFromFavorite(item)}>< img className='btnFavorites' src={heart} alt="heartFavorites" style={{ backgroundColor: 'red' }} /></span>
+                            )}
+
                         </div>
 
                         <div className='trailers'>

@@ -16,7 +16,6 @@ const NavBar = () => {
     const [textInput, setTextInput] = useState<string>()
     const navigate = useNavigate()
 
-
     useEffect(() => {
         getMovies()
     }, [])
