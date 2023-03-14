@@ -13,6 +13,7 @@ import Swal from 'sweetalert2'
 const NavBar = () => {
     const isLogged = useSelector((state: iState) => state.user.isLogged)
     const [logoutVisible, setLogoutVisible] = useState(false)
+    const [textInput, setTextInput] = useState<string>()
     const navigate = useNavigate()
 
 
@@ -32,6 +33,10 @@ const NavBar = () => {
         navigate("/sign")
     }
 
+    const handleInput = (text: string) => {
+        setTextInput(text)
+    }
+
     return (
         <>
             <header>
@@ -48,9 +53,9 @@ const NavBar = () => {
 
                 </div>
                 <div className='searchBar'>
-                    <input type='text'></input>
-                    <button><img src={searchIcon} alt='Search icon image'></img></button>
-
+                    <input onChange={(e) => handleInput(e.target.value)} type='text'></input>
+                    <button><Link to={`/SearchMovies/:${textInput}`}><img src={searchIcon} alt='Search icon image'></img></Link></button>
+                    
                     {isLogged ? (
                         <div onMouseOver={() => setLogoutVisible(true)} onMouseOut={() => setLogoutVisible(false)} className='user'>
                             <img className='userImg' src={dogo}></img>
