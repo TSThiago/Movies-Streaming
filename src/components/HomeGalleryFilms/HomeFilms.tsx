@@ -47,30 +47,31 @@ const HomeGalleryFilms = () => {
     };
 
     return (
-        <section className='containerFilms'>           
-                <div className='pageTitle'>
-                    <span>Home</span>
-                </div>
-                {response.map((item: IFilmList, index: number) => (
-                    <div className='card' key={item.movieId}>
-                        <div className='subTitle genders'>
-                            {getGenreNames(item.tagsGenre).map((name) => (
-                                <span className='gender' key={name} >{name} </span>
-                            ))}
-                        </div>
-                        <div className='containerImageFilm'>                            
-                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}/${text}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
-                                    alt="imageHome" /></Link>
-                          
-                        </div>
-                        <span className='subTitle duration'>
-
-                            <img src={clock} alt="imageDuration" />
-                            <span>{moment.utc().startOf('day').add({ minutes: runtime[index] }).format('HH:mm')}mins</span>
-                        </span>
-                        <span className='subTitle title'>{item.title}</span>
+        <section className='containerFilmsHome'>
+            <div className='pageTitle'>
+                <span>Home</span>
+            </div>
+            {response.map((item: IFilmList, index: number) => (
+                <div className='card' key={item.movieId}>
+                    <div className='subTitle genders'>
+                        {getGenreNames(item.tagsGenre).map((name) => (
+                            <span className='gender' key={name} >{name} </span>
+                        ))}
                     </div>
-                ))}
+                    <div className='containerImageFilm'>
+                        <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}/${text}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
+                            alt="imageHome" /></Link>
+
+                    </div>
+                    <div className='subTitle duration'>
+                        <img src={clock} alt="imageDuration" />
+                        <span>{moment.utc().startOf('day').add({ minutes: runtime[index] }).format('HH:mm')}mins</span>
+                    </div>
+                    
+                        <span className='subTitle title'>{item.title}</span>
+                    
+                </div>
+            ))}
         </section>
     )
 }
