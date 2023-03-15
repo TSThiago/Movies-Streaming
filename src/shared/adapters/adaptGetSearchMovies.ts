@@ -1,14 +1,14 @@
-import { ISearchMovies, SearchMovies } from "../../types/dataListFilms.interface"
+import { IFilmList, SearchMovies } from "../../types/dataListFilms.interface"
 
-const adaptGetSearchMovies =  (movies: SearchMovies): ISearchMovies[] => {
-    const adaptedSearch: ISearchMovies[] = movies.results.map(item => {
+const adaptGetSearchMovies =  (movies: SearchMovies): IFilmList[] => {
+    const adaptedSearch: IFilmList[] = movies.results.map(item => {
         return {
-            title: item.title,
-            descrition: item.overview,
-            genre: item.genre_ids,
-            rating: item.vote_average,
             background: item.backdrop_path,
-            id: item.id,
+            title: item.title,
+            tagsGenre: item.genre_ids,
+            movieId: item.id,
+            descrition: item.overview,
+            rating: item.vote_average,
         }
     })
 

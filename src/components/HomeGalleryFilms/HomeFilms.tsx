@@ -13,6 +13,7 @@ const HomeGalleryFilms = () => {
     const [response, setResponse] = useState<IFilmList[]>([])
     const [genre, setGenre] = useState<Genre[]>([])
     const [runtime, setRunTime] = useState<number[]>([])
+    const text = null
 
     useEffect(() => {
         const fetchData = async () => {
@@ -49,7 +50,6 @@ const HomeGalleryFilms = () => {
         <section className='containerFilms'>           
                 <div className='pageTitle'>
                     <span>Home</span>
-
                 </div>
                 {response.map((item: IFilmList, index: number) => (
                     <div className='card' key={item.movieId}>
@@ -59,7 +59,7 @@ const HomeGalleryFilms = () => {
                             ))}
                         </div>
                         <div className='containerImageFilm'>                            
-                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
+                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}/${text}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
                                     alt="imageHome" /></Link>
                           
                         </div>
@@ -70,7 +70,6 @@ const HomeGalleryFilms = () => {
                         </span>
                         <span className='subTitle title'>{item.title}</span>
                     </div>
-
                 ))}
         </section>
     )

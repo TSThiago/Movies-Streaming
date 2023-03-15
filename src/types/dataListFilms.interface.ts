@@ -154,14 +154,14 @@ export interface SpokenLanguage {
     name: string;
 }
 
-export interface ISearchMovies{
-    title: string,
-    descrition: string,
-    genre: number[],
-    rating: number,
-    background: null | string,
-    id: number,
-}
+// export interface ISearchMovies{
+//     title: string,
+//     descrition: string,
+//     genre: number[],
+//     rating: number,
+//     background: null | string,
+//     id: number,
+// }
 
 export interface SearchMovies {
     page: number;
@@ -180,7 +180,7 @@ export interface ResultSearchMovies {
     original_title: string;
     original_language: OriginalLanguage;
     title: string;
-    backdrop_path: null | string;
+    backdrop_path: string;
     popularity: number;
     vote_count: number;
     video: boolean;
