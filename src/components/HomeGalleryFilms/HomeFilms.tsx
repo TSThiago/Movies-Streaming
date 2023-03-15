@@ -68,7 +68,7 @@ const HomeGalleryFilms = () => {
                         <span>{moment.utc().startOf('day').add({ minutes: runtime[index] }).format('HH:mm')}mins</span>
                     </div>
                     
-                        <span className='subTitle title'>{item.title}</span>
+                    <span className='subTitle title'>{item.title}</span>
                     
                 </div>
             ))}
