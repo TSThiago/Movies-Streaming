@@ -14,14 +14,18 @@ import { iUser } from '../../types/user.interface'
 import getMovieDetails from '../../services/api/getMovieDetails'
 import adaptMovies from '../../shared/adapters/adaptFavoriteMovies'
 import getWatchedMovies from '../../services/api/getWatchedMovies'
+import { useSelector } from 'react-redux'
+import { iState } from '../../types/redux.interface'
 
 const RecentlyWatched = () => {
+    const userInfos = useSelector((state: iState) => state.user.user)
     const [allWatchedMoviesIds, setWatchedMoviesIds] = useState<iUserMovies[]>([])
     const [userWatchedMoviesIds, setUserWatchedMoviesIds] = useState<iUserMovies[]>([])
     const [userWatchedMovies, setUserWatchedMovies] = useState<iMovieList[]>([])
     const [response, setResponse] = useState<IFilmList[]>([])
     const [genre, setGenre] = useState<Genre[]>([])
     const [runTime, setRunTime] = useState<number[]>([])
+    const text = null
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,8 +41,7 @@ const RecentlyWatched = () => {
     }, [])
 
     useEffect(() => {
-        let user: iUser = JSON.parse(localStorage.getItem('user') || '')
-        const filtederMovies = filterMovies(user.id)
+        const filtederMovies = filterMovies(userInfos.id)
         setUserWatchedMoviesIds(filtederMovies)
         const usersMovies = async () => {
             const watchedMovies: iMovieList[] = await Promise.all(userWatchedMoviesIds.map((item) => handleWatchedMovies(item.movieId)))
@@ -82,14 +85,14 @@ const RecentlyWatched = () => {
     return (
         <>
             <NavBar></NavBar>
-            <section className="topMovies">
-                <div className="topMoviesHeader">
+            <section className="recentlyWatched">
+                <div className="recentlyWatchedHeader">
                     <span>Recently Watched</span>
                 </div>
                 <div className="movies">
                     {userWatchedMovies.map((movie: iMovieList, index: number) => {
                         return (
-                            <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index]}`}>
+                            <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index]}/${text}`}>
                                 <div key={movie.movieId} className="movie" >
                                     <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + movie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                         {getGenreNames(movie.tagsGenre).map(genre => {

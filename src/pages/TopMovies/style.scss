@@ -8,7 +8,7 @@
 
 
 
-.topMovies {
+.topMoviesSection {
     width: 90vw;
     margin: 0 auto;
     color: white;
@@ -35,7 +35,7 @@
 
         button:hover {
             transition-duration: 0.5s;
-            padding-bottom:10px;
+            padding-bottom: 10px;
         }
     }
 
@@ -149,5 +149,183 @@
             font-weight: 700;
         }
 
+    }
+}
+
+@media (max-width:800px) {
+    .topMoviesSection {
+        width: 90vw;
+
+        .topMoviesHeader {
+            height: 36px;
+            display: flex;
+            justify-content: space-between;
+
+
+            span {
+                font-size: 32px;
+                font-weight: 500;
+            }
+
+            button {
+                font-size: 12px;
+            }
+
+            button:hover {
+                transition-duration: 0.5s;
+                padding-bottom: 10px;
+            }
+        }
+
+
+        .movies {
+            .firstMovie {
+                height: 42vh;
+                border-radius: 1em;
+            }
+
+            .viewMoreMovie {
+                height: 42vh;
+                border-radius: 1em;
+            }
+
+            .viewMoreCategories {
+                color: black;
+                margin-top: 2vh;
+                height: 2vh;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .viewMoreCategory {
+                height: 18px;
+                font-size: 12px;
+            }
+
+            .viewMoreRunTime {
+                margin-top: 20vh;
+                height: 25px;
+                font-size: 20px;
+            }
+
+            .viewMoreTitle {
+                font-size: 24px;
+            }
+
+            .movie {
+                width: 29.33vw;
+                height: 49vh;
+                background-image: linear-gradient(to bottom,
+                        #323232,
+                        #020202);
+                border-radius: 1em;
+            }
+
+            .categories {
+                height: 21vh;
+            }
+
+            .category {
+                font-size: 12px;
+                height: 13px;
+                background-color: #FED530;
+
+            }
+
+            .runTime {
+                height: 20px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+@media (max-width:400px) {
+    .topMoviesSection {
+
+        .topMoviesHeader {
+            height: 24px;
+            display: flex;
+            justify-content: space-between;
+
+
+            span {
+                font-size: 24px;
+                font-weight: 500;
+            }
+
+            button {
+                font-size: 12px;
+            }
+
+            button:hover {
+                transition-duration: 0.5s;
+                padding-bottom: 10px;
+            }
+        }
+
+
+        .movies {
+            gap: 0.5vh;
+
+            .firstMovie {
+                height: 22vh;
+            }
+
+            .viewMoreMovie {
+                height: 22vh;
+            }
+
+
+            .viewMoreCategory {
+                height: 12px;
+                font-size: 8px;
+            }
+
+            .viewMoreRunTime {
+                margin-top: 8vh;
+                height: 12px;
+                font-size: 10px;
+
+                img {
+                    height: 12px;
+                }
+            }
+
+            .viewMoreTitle {
+                font-size: 12px;
+            }
+
+            .movie {
+                width: 44.5vw;
+                height: 27vh;
+                background-image: linear-gradient(to bottom,
+                        #323232,
+                        #020202);
+                border-radius: 1em;
+            }
+
+
+            .categories {
+                height: 15vh;
+            }
+
+            .category {
+                font-size: 10px;
+                background-color: #FED530;
+
+            }
+
+            .runTime {
+                height: 10px;
+            }
+
+            .title {
+                font-size: 13px;
+            }
+        }
     }
 }

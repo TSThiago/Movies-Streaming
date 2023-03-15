@@ -24,7 +24,8 @@ const TopMovies = () => {
     })
     const [genre, setGenre] = useState<Genre[]>([])
     const [runTime, setRunTime] = useState<number[]>([])
-
+    const text = null 
+    
     useEffect(() => {
         getTopMovies()
             .then(function (topMovies) {
@@ -67,7 +68,7 @@ const TopMovies = () => {
     return (
         <>
             <NavBar></NavBar>
-            <section className="topMovies">
+            <section className="topMoviesSection">
                 <div className="topMoviesHeader">
                     <span>Top Movies</span>
                     {viewMore ? (
@@ -84,7 +85,7 @@ const TopMovies = () => {
                 <div className="movies">
                     {viewMore ? (
                         <>
-                            <Link to={`/Movies/${topOne.movieId}/${getGenreNames(topOne.tagsGenre).join(',')}/${runTime[0]}`}>
+                            <Link to={`/Movies/${topOne.movieId}/${getGenreNames(topOne.tagsGenre).join(',')}/${runTime[0]}/${text}`}>
                                 <div key={topOne.movieId} className="firstMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + topOne.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                     <div className="viewMoreCategories">
                                         {getGenreNames(topOne.tagsGenre).map(genre => {

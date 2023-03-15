@@ -20,6 +20,7 @@ import redHeart from '../../assets/redHeart.png'
 import getSearchMovies from '../../services/api/getSearchMovies'
 
 const Movies = () => {
+    const userInfos = useSelector((state: iState) => state.user.user)
     const isLogged = useSelector((state: iState) => state.user.isLogged)
     const [favorite, setFavorite] = useState(false)
     const { id, genre, runTime, text} = useParams<{ id: string, genre: string, runTime: string, text: string }>();
@@ -31,7 +32,6 @@ const Movies = () => {
     const [responseVideos, setResponseVideos] = useState<IVideoList[]>([])
     const [moviesVideos, setMoviesVideos] = useState<IVideoList[]>([])
     const navigate = useNavigate()
-
 
     useEffect(() => {
         getFavoriteMovies()
@@ -52,6 +52,7 @@ const Movies = () => {
             setResponse(popularMovies.concat(topMovies).concat(resultSearch))
         }
         fetchData()
+        verifyFavoritedMovie(parseInt(id))
     }, [])
 
     useEffect(() => {
@@ -82,6 +83,17 @@ const Movies = () => {
         }
         filterVideos()
     }, [responseVideos])
+
+    const verifyFavoritedMovie = (movieId : number) => {
+        getFavoriteMovies()
+        .then(function(favoritedMovies) {
+            favoritedMovies.map((movie : iApiMovies) => {
+                if(movieId === movie.movieId){
+                    setFavorite(true)
+                }
+            })
+        })
+    }
 
     const watchMovie = (movie: IFilmList, userId: number) => {
         let watchedMovie: iUserMovies = {
@@ -160,7 +172,6 @@ const Movies = () => {
     const removeFromFavorite = (movie: IFilmList) => {
         favoriteMovies.map((favMovie) => {
             if (favMovie.movieId === movie.movieId) {
-                console.log(favMovie)
                 fetch('https://apigenerator.dronahq.com/api/4sHK6s2W/users_favorite/' + favMovie.id, { method: 'DELETE' })
                     .then(res => res.json())
             }
@@ -177,8 +188,7 @@ const Movies = () => {
         if (!isLogged) {
             return null
         } else {
-            const user: iUser = JSON.parse(localStorage.getItem('user') || '')
-            const userId = user.id
+            const userId = userInfos.id
             return userId
         }
     }

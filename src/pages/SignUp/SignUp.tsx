@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { iUser, iLoginUser } from '../../types/user.interface';
 import getUsers from '../../services/api/getUsers';
 import store from '../../store';
-import { setLoginAction } from '../../store/user/action';
+import { setLoginAction, setUserInfosAction } from '../../store/user/action';
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
@@ -97,6 +97,10 @@ const SignUp = () => {
         setUserPassword(e.currentTarget.value)
     }
 
+    const setInfosAction = (user : iUser) => {
+        store.dispatch(setUserInfosAction(user))
+    } 
+
     const handleUser = async () => {
         getUsers()
             .then(function (users) {
@@ -114,7 +118,7 @@ const SignUp = () => {
                             confirmButtonColor: 'black'
                         })
                         userFound = true
-                        localStorage.setItem('user', JSON.stringify(user))
+                        setInfosAction(user)
                         navigate("/")
                     }
                 })
