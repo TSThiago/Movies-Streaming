@@ -4,17 +4,16 @@ import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
 import NavBar from '../../components/Navbar/Navbar'
 import getSearchMovies from '../../services/api/getSearchMovies'
-import { Genre, ISearchMovies } from '../../types/dataListFilms.interface'
+import { Genre, IFilmList } from '../../types/dataListFilms.interface'
 import "./style.scss"
 import clock from "../../assets/clock.png"
 import getMoviesGenres from '../../services/api/getMoviesGenres'
 import getDetails from '../../services/api/getDetails'
 import moment from 'moment'
-
 export const SearchMovies = () => {
 
     const { text } = useParams<{ text: string }>()
-    const [resultSearch, setResultSearch] = useState<ISearchMovies[]>([])
+    const [resultSearch, setResultSearch] = useState<IFilmList[]>([])
     const [genre, setGenre] = useState<Genre[]>([])
     const [runtime, setRunTime] = useState<number[]>([])
 
@@ -34,14 +33,15 @@ export const SearchMovies = () => {
     const getGenreNames = (tags: number[]) => {
         const names = tags.map((tag) => {
             const genreName = genre.find((item) => item.id === tag);
-            return genreName ? genreName.name : "";
+            return genreName ? genreName.name : null;
         });
+        console.log(names)
         return names;
     };
 
     useEffect(() => {
         const duration = async () => {
-            const runTimes = await Promise.all(resultSearch.map((item) => handleRunTime(item.id)))
+            const runTimes = await Promise.all(resultSearch.map((item) => handleRunTime(item.movieId)))
             setRunTime(runTimes)
         }
         duration()
@@ -62,22 +62,24 @@ export const SearchMovies = () => {
                     <span>Search Result:</span>
 
                 </div>
-                {resultSearch.map((item: ISearchMovies, index: number) => (
-                    <div className='card' key={item.id}>
+                {resultSearch.map((item: IFilmList, index: number) => (
+                    <div className='card' key={item.movieId}>
                         <div className='subTitle genders'>
-                            {getGenreNames(item.genre).map((name) => (
-                                <span className='gender' key={name} >{name} </span>
+                            {getGenreNames(item.tagsGenre).map((name) => (
+                                <span className='gender' key={name} >{name}</span>
                             ))} 
                         </div>
                         <div className='containerImageFilm'>                            
-                                <Link to={`/Movies/${item.id}/${getGenreNames(item.genre).join(',')}/${runtime[index]}/${text}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
-                                    alt="imageHome" /></Link>
+                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/
+                                ${runtime[index]}/${text}`}><img className='imageFilm'
+                                src={`https://image.tmdb.org/t/p/original/${item.background}`} alt="imageHome" /></Link>
                           
                         </div>
                         <span className='subTitle duration'>
                             <img src={clock} alt="imageDuration" />
                             <span>{moment.utc().startOf('day').add({ minutes: runtime[index] }).format('HH:mm')}mins</span>
                         </span>
+
                         <span className='subTitle title'>{item.title}</span>
                     </div>
 

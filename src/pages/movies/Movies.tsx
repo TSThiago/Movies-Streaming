@@ -16,13 +16,12 @@ import getWatchedMovies from '../../services/api/getWatchedMovies'
 import getFavoriteMovies from '../../services/api/getFavoriteMovies'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
-import Swal from 'sweetalert2'
 import getSearchMovies from '../../services/api/getSearchMovies'
 
 const Movies = () => {
     const isLogged = useSelector((state: iState) => state.user.isLogged)
     const [favorite, setFavorite] = useState(false)
-    const { id, genre, runTime, text } = useParams<{ id: string, genre: string, runTime: string, text: string }>();
+    const { id, genre, runTime, text} = useParams<{ id: string, genre: string, runTime: string, text: string }>();
     const genres = genre ? genre.split(', ') : [];
     const [response, setResponse] = useState<IFilmList[]>([])
     const [film, setFilm] = useState<IFilmList[]>([])
@@ -45,7 +44,11 @@ const Movies = () => {
         const fetchData = async () => {
             const popularMovies = await getMoviesPopular()
             const topMovies = await getTopMovies()
-            setResponse(popularMovies.concat(topMovies))
+            let resultSearch : IFilmList[] = []
+            if(text){
+                resultSearch = await getSearchMovies(text)  
+            }
+            setResponse(popularMovies.concat(topMovies).concat(resultSearch))
         }
         fetchData()
     }, [])
