@@ -1,4 +1,4 @@
-import "./App.scss"
+import "./Home.scss"
 import Footer from "../../components/Footer/Footer"
 import HomeGalleryFilms from '../../components/HomeGalleryFilms/HomeFilms'
 import Navbar from '../../components/Navbar/Navbar'
