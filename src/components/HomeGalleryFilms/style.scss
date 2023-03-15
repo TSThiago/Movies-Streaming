@@ -85,11 +85,12 @@
 
         .card {
             width: (calc(90% / 3));
-            height: 150px;         
+            height: 180px;         
 
             .genders {               
 
-                .gender {                    
+                .gender {
+                    bottom: 30px;                    
                     font-size: 10px;                   
                     padding: 0.2rem;
                 }

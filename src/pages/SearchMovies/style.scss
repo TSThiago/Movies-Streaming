@@ -14,6 +14,7 @@
 
     .card {
         width: (calc(90% / 3));
+        height: 320px;
         display: flex;
         flex-direction: column;
         position: relative;
@@ -54,6 +55,7 @@
         }
 
         .duration {
+            margin-top: -3vh;
             display: flex;
             align-items: center;
             font-size: 0.875rem;
