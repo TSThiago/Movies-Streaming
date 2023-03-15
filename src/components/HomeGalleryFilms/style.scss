@@ -1,10 +1,4 @@
-.containerFilms {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    color: #ffffff;
-    justify-content: center;
-    gap: 1rem;
+.containerFilmsHome {
 
     .pageTitle {
         width: 90vw;
@@ -14,6 +8,7 @@
 
     .card {
         width: (calc(90% / 3));
+        height: 280px;
         display: flex;
         flex-direction: column;
         position: relative;
@@ -58,55 +53,95 @@
             align-items: center;
             font-size: 0.875rem;
             z-index: 1;
-            top: 75%;
             position: absolute;
             font-weight: 900;
         }
 
         .title {
+            word-wrap: break-word;
             font-weight: 700;
             font-size: 1.5rem;
-            position: absolute;
             z-index: 1;
             bottom: 0;
+
         }
     }
 }
 
-
-@media (max-width: 800px) {
-    .containerFilms {
-        .pageTitle {
-            font-size: 32px;
-        }
+@media screen and (max-width: 800px) {
+    .containerFilmsHome {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        color: #ffffff;
+        justify-content: center;
+        gap: 1rem;
 
         .card {
-            .gender {
-                color: #2E2E2E;
-                font-size: 8px;
-                border-radius: 1rem;
+            width: (calc(90% / 3));
+            height: 150px;         
+
+            .genders {               
+
+                .gender {                    
+                    font-size: 10px;                   
+                    padding: 0.2rem;
+                }
+            }         
+
+            .imageFilm {
+                height: 90%;
             }
-        }
 
-        .duration {
-            display: flex;
-            align-items: center;
-            font-size: 0.875rem;
-            z-index: 1;
-            top: 75%;
-            position: absolute;
-            font-weight: 900;
-        }
+            .duration {
+                bottom: 0;
+                font-size: 0.6rem;
+            }
 
-        .title {
-            font-weight: 700;
-            font-size: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 0;
+            .title {
+                word-wrap: break-word;                
+                font-size: 0.8rem;
+                bottom: 0;
+            }
         }
     }
 }
 
+@media screen and (max-width: 400px) {
+    .containerFilmsHome {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        color: #ffffff;
+        justify-content: center;
+        gap: 1rem;
 
-@media (max-width: 400px) {}
+        .card {
+            width: (calc(90% / 2));
+            height: 150px;         
+
+            .genders {      
+                
+                .gender {                    
+                    font-size: 7px;                   
+                    padding: 0.2rem;
+                }
+            }         
+
+            .imageFilm {
+                height: 80%;
+            }
+
+            .duration {
+                margin-bottom: 5vh;
+                font-size: 0.5rem;
+            }
+
+            .title {
+                               
+                font-size: 0.5rem;
+                bottom: 0;
+            }
+        }
+    }
+}
