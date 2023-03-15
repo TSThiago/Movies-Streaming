@@ -14,7 +14,7 @@ import { Provider } from 'react-redux'
 import RecentlyWatched from './pages/RecentlyWatched/RecentlyWatched'
 import FavoriteMovies from './pages/FavoriteMovies/FavoriteMovies'
 import { SearchMovies } from './pages/SearchMovies/SearchMovies'
-import App from './pages/Home/App';
+import App from './pages/Home/Home';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
