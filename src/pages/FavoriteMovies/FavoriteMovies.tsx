@@ -8,7 +8,7 @@ import getMoviesGenres from '../../services/api/getMoviesGenres'
 import clock from "../../assets/clock.png"
 import getDetails from '../../services/api/getDetails'
 import moment from 'moment'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import getFavoriteMovies from '../../services/api/getFavoriteMovies'
 import getTopMovies from '../../services/api/getTopMovies'
 import { iUser } from '../../types/user.interface'
@@ -16,6 +16,7 @@ import getMovieDetails from '../../services/api/getMovieDetails'
 import adaptMovies from '../../shared/adapters/adaptFavoriteMovies'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
+import getSearchMovies from '../../services/api/getSearchMovies'
 
 const FavoriteMovies = () => {
     const userInfos = useSelector((state: iState) => state.user.user)
@@ -25,6 +26,7 @@ const FavoriteMovies = () => {
     const [response, setResponse] = useState<IFilmList[]>([])
     const [genre, setGenre] = useState<Genre[]>([])
     const [runtime, setRunTime] = useState<number[]>([])
+    const text = null
 
     useEffect(() => {
         const fetchData = async () => {
@@ -98,7 +100,7 @@ const FavoriteMovies = () => {
                             ))}
                         </div>
                         <div className='containerImageFilm'>
-                            <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
+                            <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}/${text}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
                                 alt="imageHome" /></Link>
 
                         </div>

@@ -17,6 +17,7 @@ import getFavoriteMovies from '../../services/api/getFavoriteMovies'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
 import redHeart from '../../assets/redHeart.png'
+import getSearchMovies from '../../services/api/getSearchMovies'
 
 const Movies = () => {
     const userInfos = useSelector((state: iState) => state.user.user)
@@ -31,7 +32,6 @@ const Movies = () => {
     const [responseVideos, setResponseVideos] = useState<IVideoList[]>([])
     const [moviesVideos, setMoviesVideos] = useState<IVideoList[]>([])
     const navigate = useNavigate()
-
 
     useEffect(() => {
         getFavoriteMovies()

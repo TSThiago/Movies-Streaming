@@ -8,12 +8,12 @@
 
 
 
-.topMovies {
+.recentlyWatched {
     width: 90vw;
     margin: 0 auto;
     color: white;
 
-    .topMoviesHeader {
+    .recentlyWatchedHeader {
         height: 64px;
         display: flex;
         justify-content: space-between;
@@ -35,7 +35,7 @@
 
         button:hover {
             transition-duration: 0.5s;
-            padding-bottom:10px;
+            padding-bottom: 10px;
         }
     }
 
@@ -149,5 +149,103 @@
             font-weight: 700;
         }
 
+    }
+}
+
+@media (max-width:800px) {
+    .recentlyWatched {
+        width: 90vw;
+
+        .recentlyWatchedHeader {
+            height: 36px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5vh;
+
+            span {
+                font-size: 32px;
+                font-weight: 500;
+            }
+
+        }
+
+        .movies {
+            .movie {
+                width: 29.33vw;
+                height: 43vh;
+                background-image: linear-gradient(to bottom,
+                        #323232,
+                        #020202);
+                border-radius: 1em;
+            }
+
+            .categories {
+                height: 21vh;
+            }
+
+            .category {
+                font-size: 12px;
+                height: 13px;
+                background-color: #FED530;
+
+            }
+
+            .runTime {
+                height: 20px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+@media (max-width:400px) {
+    .recentlyWatched {
+
+        .recentlyWatchedHeader {
+            height: 24px;
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+
+
+        .movies {
+            gap: 0.5vh;
+            
+            .movie {
+                width: 44.5vw;
+                height: 27vh;
+                background-image: linear-gradient(to bottom,
+                        #323232,
+                        #020202);
+                border-radius: 1em;
+            }
+
+
+            .categories {
+                height: 15vh;
+            }
+
+            .category {
+                font-size: 10px;
+                background-color: #FED530;
+
+            }
+
+            .runTime {
+                height: 10px;
+            }
+
+            .title {
+                font-size: 13px;
+            }
+        }
     }
 }
