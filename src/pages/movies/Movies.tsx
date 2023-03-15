@@ -23,7 +23,7 @@ const Movies = () => {
     const userInfos = useSelector((state: iState) => state.user.user)
     const isLogged = useSelector((state: iState) => state.user.isLogged)
     const [favorite, setFavorite] = useState(false)
-    const { id, genre, runTime, text} = useParams<{ id: string, genre: string, runTime: string, text: string }>();
+    const { id, genre, runTime, text } = useParams<{ id: string, genre: string, runTime: string, text: string }>();
     const genres = genre ? genre.split(', ') : [];
     const [response, setResponse] = useState<IFilmList[]>([])
     const [film, setFilm] = useState<IFilmList[]>([])
@@ -34,25 +34,28 @@ const Movies = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        getFavoriteMovies()
-            .then(function (moviesFavorited) {
-                setFavoriteMovies(moviesFavorited)
-            })
-        getWatchedMovies()
-            .then(function (moviesWatched) {
-                setWatchedMovies(moviesWatched)
-            })
-        const fetchData = async () => {
-            const popularMovies = await getMoviesPopular()
-            const topMovies = await getTopMovies()
-            let resultSearch : IFilmList[] = []
-            if(text){
-                resultSearch = await getSearchMovies(text)  
+        if (id !== undefined) {
+            getFavoriteMovies()
+                .then(function (moviesFavorited) {
+                    setFavoriteMovies(moviesFavorited)
+                })
+            getWatchedMovies()
+                .then(function (moviesWatched) {
+                    setWatchedMovies(moviesWatched)
+                })
+            const fetchData = async () => {
+                const popularMovies = await getMoviesPopular()
+                const topMovies = await getTopMovies()
+                let resultSearch: IFilmList[] = []
+                if (text) {
+                    resultSearch = await getSearchMovies(text)
+                }
+                setResponse(popularMovies.concat(topMovies).concat(resultSearch))
             }
-            setResponse(popularMovies.concat(topMovies).concat(resultSearch))
+            fetchData()
+            verifyFavoritedMovie(parseInt(id))
         }
-        fetchData()
-        verifyFavoritedMovie(parseInt(id))
+
     }, [])
 
     useEffect(() => {
@@ -84,15 +87,15 @@ const Movies = () => {
         filterVideos()
     }, [responseVideos])
 
-    const verifyFavoritedMovie = (movieId : number) => {
+    const verifyFavoritedMovie = (movieId: number) => {
         getFavoriteMovies()
-        .then(function(favoritedMovies) {
-            favoritedMovies.map((movie : iApiMovies) => {
-                if(movieId === movie.movieId){
-                    setFavorite(true)
-                }
+            .then(function (favoritedMovies) {
+                favoritedMovies.map((movie: iApiMovies) => {
+                    if (movieId === movie.movieId) {
+                        setFavorite(true)
+                    }
+                })
             })
-        })
     }
 
     const watchMovie = (movie: IFilmList, userId: number) => {
@@ -184,9 +187,9 @@ const Movies = () => {
         })
     }
 
-    const getUserId = (): number | null => {
+    const getUserId = () => {
         if (!isLogged) {
-            return null
+            return 0
         } else {
             const userId = userInfos.id
             return userId
