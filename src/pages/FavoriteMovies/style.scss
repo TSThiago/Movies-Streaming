@@ -73,3 +73,83 @@
         }
     }
 }
+
+@media screen and (max-width: 800px) {
+    .containerFilms {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        color: #ffffff;
+        justify-content: center;
+        gap: 1rem;
+
+        .card {
+            width: (calc(90% / 3));
+            height: 180px;         
+
+            .genders {               
+
+                .gender {                    
+                    font-size: 10px;                   
+                    padding: 0.2rem;
+                }
+            }         
+
+            .imageFilm {
+                height: 90%;
+            }
+
+            .duration {
+                margin-bottom: 5vh;
+                bottom: 0;
+                font-size: 0.6rem;
+            }
+
+            .title {
+                word-wrap: break-word;                
+                font-size: 0.8rem;
+                
+                bottom: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .containerFilms {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        color: #ffffff;
+        justify-content: center;
+        gap: 1rem;
+
+        .card {
+            width: (calc(90% / 2));
+            height: 150px;         
+
+            .genders {      
+                
+                .gender {                    
+                    font-size: 7px;                   
+                    padding: 0.2rem;
+                }
+            }         
+
+            .imageFilm {
+                height: 80%;
+            }
+
+            .duration {
+                margin-bottom: 5vh;
+                font-size: 0.5rem;
+            }
+
+            .title {
+                               
+                font-size: 0.5rem;
+                bottom: 0;
+            }
+        }
+    }
+}
