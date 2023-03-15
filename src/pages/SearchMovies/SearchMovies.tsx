@@ -57,7 +57,7 @@ export const SearchMovies = () => {
         <>
             <NavBar />
 
-            <section className='containerFilms'>           
+            <section className='containerSearchMovies'>           
                 <div className='pageTitle'>
                     <span>Search Result:</span>
 

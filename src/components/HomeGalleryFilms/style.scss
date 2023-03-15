@@ -1,4 +1,10 @@
 .containerFilmsHome {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: #ffffff;
+    justify-content: center;
+    gap: 1rem;
 
     .pageTitle {
         width: 90vw;
@@ -8,7 +14,6 @@
 
     .card {
         width: (calc(90% / 3));
-        height: 280px;
         display: flex;
         flex-direction: column;
         position: relative;
@@ -53,17 +58,17 @@
             align-items: center;
             font-size: 0.875rem;
             z-index: 1;
+            top: 75%;
             position: absolute;
             font-weight: 900;
         }
 
         .title {
-            word-wrap: break-word;
             font-weight: 700;
             font-size: 1.5rem;
+            position: absolute;
             z-index: 1;
             bottom: 0;
-
         }
     }
 }
