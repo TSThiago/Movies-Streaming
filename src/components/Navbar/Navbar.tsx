@@ -11,7 +11,7 @@ import { setLogoutAction } from '../../store/user/action'
 import Swal from 'sweetalert2'
 
 const NavBar = () => {
-    const isLogged = useSelector((state: iState) => state.user.isLogged)
+    const isLogged = useSelector((state: iState) => state.user.isLogged = true)
     const [logoutVisible, setLogoutVisible] = useState(false)
     const [textInput, setTextInput] = useState<string>()
     const navigate = useNavigate()

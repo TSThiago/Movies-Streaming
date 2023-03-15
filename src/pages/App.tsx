@@ -1,7 +1,7 @@
 import '../styles/App.scss'
-import Navbar from '../components/Navbar/Navbar'
 import Footer from "../components/Footer/Footer"
 import HomeGalleryFilms from '../components/HomeGalleryFilms/HomeFilms'
+import Navbar from '../components/Navbar/Navbar'
 
 function App() {
   return (

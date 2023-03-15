@@ -1,25 +1,25 @@
 .containerFooter {
+    margin: 2vh 0;
     display: flex;
-    width: 100%;
-    height: 40%;
+    width: 99.3vw;
+    height: 50vh;
 
     .sectionOne {
+        display: grid;
+        place-content: center;
+        gap: 10px;
         width: 30vw;
-        left: 6.5rem;
-        top: 344rem;
         background-color: #3D3D3D;
         padding: 1rem;
 
         .headerOne {
             width: 20rem;
             height: 5.5rem;
-            left: 6.5rem;
-            top: 344rem;
             font-weight: 500;
             font-size: 4rem;
-            line-height: 5.5rem;
             color: #ffffff
         }
+
         .headerTwo {
             width: 20rem;
             height: 6rem;
@@ -30,6 +30,7 @@
             line-height: 2rem;
             color: #E6E6E6;
         }
+
         .headerThree {
             width: 8.1rem;
             height: 1.5rem;
@@ -40,6 +41,7 @@
             line-height: 1.5rem;
             color: #FFFFFF;
         }
+
         .form {
             display: flex;
             align-items: center;
@@ -64,8 +66,7 @@
             .btnEmail {
                 width: 3rem;
                 height: 3rem;
-                left: 20.5rem;
-                top: 364rem;
+                margin-right: 10px;
                 background-color: #FED530;
                 border-radius: 0.5rem;
                 cursor: pointer;
@@ -83,44 +84,175 @@
     .subContainerFooter {
         background-color: #2E2E2E;
         display: flex;
+        flex-wrap: wrap;
         width: 70vw;
         color: #FFFFFF;
 
-        .sectionTwo {
+        .subContainerSection {
+            font-size: 16px;
+            color: #E6E6E6;
+            display: flex;
+            flex-direction: column;
+            gap: 3vh;
+            width: 15vw;
+            height: 25vh;
             margin-left: 5vw;
-            margin-top: 15vh;
-            width: 21rem;
+            margin-top: 5vh;
 
             p {
-                color: #E6E6E6
+                font-weight: 400;
             }
 
             .title {
-                color: #FFFFFF;
-                width: 4rem;
-                height: 1.5rem;
-                left: 39rem;
-                top: 347rem;
+                font-weight: 700;
             }
         }
 
         .sectionThree {
-            margin-left: 5vw;
-            margin-top: 15vh;
-            width: 21vw;
+            height: 20vh;
+            width: 60vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3vw;
 
-            p {
-                color: #E6E6E6
+            span {
+                display: flex;
+                align-items: center;
+
+                img {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .containerFooter {
+        width: 100vw;
+
+        .sectionOne {
+            gap: 5px;
+            width: 30vw;
+            background-color: #3D3D3D;
+
+            .headerOne {
+                width: 20vw;
+                font-weight: 500;
+                font-size: 32px;
+                line-height: 5.5rem;
+                color: #ffffff
+            }
+
+            .headerTwo {
+                width: 25vw;
+                font-size: 12px;
+                color: #E6E6E6;
+            }
+
+            .headerThree {
+                font-size: 12px;
+                color: #FFFFFF;
+            }
+
+            .form {
+                width: 25vw;
+
+                input {
+                    width: 18vw;
+                    margin-left: 1vw;
+                }
+
+                .btnEmail {
+                    margin-right: 5vw;
+                    cursor: pointer;
+
+                    .setaFooter {
+                        height: 30px;
+                        width: 30px;
+                        left: 0rem;
+                        top: 0rem;
+                    }
+                }
             }
         }
 
-        .sectionFour {
-            margin-left: 5vw;
-            margin-top: 15vh;
-            width: 21vw;
+        .subContainerFooter {
 
-            p {
-                color: #E6E6E6
+            .subContainerSection {
+                font-size: 12px;
+            }
+
+            .sectionThree {
+                font-size: 8px;
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .containerFooter {
+        width: 100vw;
+
+        .sectionOne {
+            gap: 5px;
+            width: 40vw;
+            background-color: #3D3D3D;
+
+            .headerOne {
+                display: flex;
+                align-items: center;
+                width: 20vw;
+                height: 7vh;
+                font-size: 16px;
+            }
+
+            .headerTwo {
+                display: flex;
+                align-items: center;
+                width: 25vw;
+                font-size: 8px;
+            }
+
+            .headerThree {
+                display: flex;
+                align-items: center;
+                height: 8vh;
+                font-size: 8px;
+            }
+
+            .form {
+                width: 31vw;
+                height: 8vh;
+
+                input {
+                    width: 24vw;
+                    margin-left: 1vw;
+                }
+
+                .btnEmail {
+                    height: 4vh;
+                    cursor: pointer;
+                    margin-right: 1vw;
+                    width: 6vw;
+
+                    .setaFooter {
+                        height: 15px;
+                        width: 15px;
+                    }
+                }
+            }
+        }
+
+        .subContainerFooter {
+
+            .subContainerSection {
+                font-size: 8px;
+            }
+
+            .sectionThree {
+                font-size: 6px;
             }
         }
     }
