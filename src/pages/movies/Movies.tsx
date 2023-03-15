@@ -213,7 +213,7 @@ const Movies = () => {
                             <span className='descrition'>{item.descrition}</span>
                             <span>Genre: {genres}</span>
                             <span>Duration: {runTime ? moment.utc().startOf('day').add({ minutes: parseInt(runTime) }).format('HH:mm') : ''}mins</span>
-                            <span>Rating: {item.rating}</span>
+                            <span>Rating: {item.rating.toFixed(1)}</span>
                             {!favorite ? (
                                 <button onClick={() => addToFavorites(item, getUserId())}>< img className='btnFavorites' src={heart} alt="heartFavorites" /></button>
                             ) : (

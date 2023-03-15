@@ -17,14 +17,14 @@ export const SearchMovies = () => {
     const [genre, setGenre] = useState<Genre[]>([])
     const [runtime, setRunTime] = useState<number[]>([])
 
-   
+
     useEffect(() => {
         const filter = async () => {
+            const resultGenre = await getMoviesGenres()
+            setGenre(resultGenre.genres)
             if (text) {
                 const res = await getSearchMovies(text)
                 setResultSearch(res)
-                const resultGenre = await getMoviesGenres()
-                setGenre(resultGenre.genres)
             }
         }
         filter()
@@ -35,7 +35,6 @@ export const SearchMovies = () => {
             const genreName = genre.find((item) => item.id === tag);
             return genreName ? genreName.name : null;
         });
-        console.log(names)
         return names;
     };
 
@@ -57,7 +56,7 @@ export const SearchMovies = () => {
         <>
             <NavBar />
 
-            <section className='containerSearchMovies'>           
+            <section className='containerSearchMovies'>
                 <div className='pageTitle'>
                     <span>Search Result:</span>
 
@@ -67,13 +66,13 @@ export const SearchMovies = () => {
                         <div className='subTitle genders'>
                             {getGenreNames(item.tagsGenre).map((name) => (
                                 <span className='gender' key={name} >{name}</span>
-                            ))} 
+                            ))}
                         </div>
-                        <div className='containerImageFilm'>                            
-                                <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/
+                        <div className='containerImageFilm'>
+                            <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/
                                 ${runtime[index]}/${text}`}><img className='imageFilm'
-                                src={`https://image.tmdb.org/t/p/original/${item.background}`} alt="imageHome" /></Link>
-                          
+                                    src={`https://image.tmdb.org/t/p/original/${item.background}`} alt="imageHome" /></Link>
+
                         </div>
                         <span className='subTitle duration'>
                             <img src={clock} alt="imageDuration" />
@@ -84,7 +83,7 @@ export const SearchMovies = () => {
                     </div>
 
                 ))}
-        </section>
+            </section>
 
             <Footer />
         </>
