@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './pages/home/App'
 import TopMovies from './pages/TopMovies/TopMovies'
 import './styles/index.scss'
 import {
@@ -15,6 +14,7 @@ import { Provider } from 'react-redux'
 import RecentlyWatched from './pages/RecentlyWatched/RecentlyWatched'
 import FavoriteMovies from './pages/FavoriteMovies/FavoriteMovies'
 import { SearchMovies } from './pages/SearchMovies/SearchMovies'
+import App from './pages/Home/App';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
