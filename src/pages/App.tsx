@@ -1,16 +1,16 @@
-import '../styles/App.scss'
-import Footer from "../components/Footer/Footer"
-import HomeGalleryFilms from '../components/HomeGalleryFilms/HomeFilms'
-import Navbar from '../components/Navbar/Navbar'
+// import '../styles/App.scss'
+// import Footer from "../components/Footer/Footer"
+// import HomeGalleryFilms from '../components/HomeGalleryFilms/HomeFilms'
+// import Navbar from '../components/Navbar/Navbar'
 
-function App() {
-  return (
-    < div className="App" >
-      <Navbar></Navbar>
-      <HomeGalleryFilms/>
-      <Footer />
-    </div >
-  )
-}
+// function App() {
+//   return (
+//     < div className="App" >
+//       <Navbar></Navbar>
+//       <HomeGalleryFilms/>
+//       <Footer />
+//     </div >
+//   )
+// }
 
-export default App;
+// export default App;

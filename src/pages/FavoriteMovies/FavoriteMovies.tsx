@@ -8,20 +8,25 @@ import getMoviesGenres from '../../services/api/getMoviesGenres'
 import clock from "../../assets/clock.png"
 import getDetails from '../../services/api/getDetails'
 import moment from 'moment'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import getFavoriteMovies from '../../services/api/getFavoriteMovies'
 import getTopMovies from '../../services/api/getTopMovies'
 import { iUser } from '../../types/user.interface'
 import getMovieDetails from '../../services/api/getMovieDetails'
 import adaptMovies from '../../shared/adapters/adaptFavoriteMovies'
+import { useSelector } from 'react-redux'
+import { iState } from '../../types/redux.interface'
+import getSearchMovies from '../../services/api/getSearchMovies'
 
 const FavoriteMovies = () => {
+    const userInfos = useSelector((state: iState) => state.user.user)
     const [allFavoriteMoviesIds, setAllFavoriteMoviesids] = useState<iUserMovies[]>([])
     const [userFavoriteMoviesIds, setUserFavoriteMoviesIds] = useState<iUserMovies[]>([])
     const [userFavoriteMovies, setUserFavoriteMovies] = useState<iMovieList[]>([])
     const [response, setResponse] = useState<IFilmList[]>([])
     const [genre, setGenre] = useState<Genre[]>([])
     const [runtime, setRunTime] = useState<number[]>([])
+    const text = null
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,9 +42,8 @@ const FavoriteMovies = () => {
     }, [])
 
     useEffect(() => {
-        let user: iUser = JSON.parse(localStorage.getItem('user') || '')
-        const filtederMovies = filterMovies(user.id)
-        setUserFavoriteMoviesIds(filtederMovies)
+        const filteredMovies = filterMovies(userInfos.id)
+        setUserFavoriteMoviesIds(filteredMovies)
         const usersMovies = async () => {
             const favoriteMovies: iMovieList[] = await Promise.all(userFavoriteMoviesIds.map((item) => handleFavoriteMovies(item.movieId)))
             setUserFavoriteMovies(favoriteMovies)
@@ -96,7 +100,7 @@ const FavoriteMovies = () => {
                             ))}
                         </div>
                         <div className='containerImageFilm'>
-                            <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
+                            <Link to={`/Movies/${item.movieId}/${getGenreNames(item.tagsGenre).join(',')}/${runtime[index]}/${text}`}><img className='imageFilm' src={`https://image.tmdb.org/t/p/original/${item.background}`}
                                 alt="imageHome" /></Link>
 
                         </div>

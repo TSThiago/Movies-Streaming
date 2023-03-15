@@ -7,17 +7,29 @@ import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
 import { Link, useNavigate } from 'react-router-dom'
 import store from '../../store'
-import { setLogoutAction } from '../../store/user/action'
+import { setLogoutAction, setRemoveUserInfosAction } from '../../store/user/action'
 import Swal from 'sweetalert2'
+import { iUser } from '../../types/user.interface'
 
 const NavBar = () => {
-    const isLogged = useSelector((state: iState) => state.user.isLogged = true)
+    const isLogged = useSelector((state: iState) => state.user.isLogged)
+    const userInfos = useSelector((state: iState) => state.user.user)
+    const [user, setUser] = useState<iUser>({
+        id: 0,
+        firstName : '',
+        lastName : '',
+        password: '',
+        email : '',
+        phone : '',
+        profilePic : ''
+    })
     const [logoutVisible, setLogoutVisible] = useState(false)
     const [textInput, setTextInput] = useState<string>()
     const navigate = useNavigate()
 
     useEffect(() => {
         getMovies()
+        setUser(userInfos)
     }, [])
 
 
@@ -27,14 +39,24 @@ const NavBar = () => {
             icon: 'success',
             confirmButtonColor: 'black'
         })
-        localStorage.setItem('user', JSON.stringify(null))
         store.dispatch(setLogoutAction(false))
+        store.dispatch(setRemoveUserInfosAction({
+            id: 0,
+            firstName : '',
+            lastName : '',
+            password: '',
+            email : '',
+            phone : '',
+            profilePic : ''
+        }))
         navigate("/sign")
     }
 
     const handleInput = (text: string) => {
         setTextInput(text)
     }
+
+
 
     return (
         <>
@@ -59,7 +81,7 @@ const NavBar = () => {
                         <div onMouseOver={() => setLogoutVisible(true)} onMouseOut={() => setLogoutVisible(false)} className='user'>
                             <img className='userImg' src={dogo}></img>
                             {!logoutVisible ? (
-                                <span >Thiago Shibanuma</span>
+                                <span>{user.firstName}  {user.lastName}</span>
                             ) : (
                                 <span onClick={logoutUser} style={{ cursor: 'pointer' }}>Log Out</span>
                             )}
