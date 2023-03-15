@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './pages/Home/App'
+import App from './pages/home/App'
 import TopMovies from './pages/TopMovies/TopMovies'
 import './styles/index.scss'
 import {
