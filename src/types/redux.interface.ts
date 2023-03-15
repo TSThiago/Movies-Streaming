@@ -1,3 +1,5 @@
+import { iUser } from "./user.interface"
+
 export interface iAction {
     type: string,
     payload: any
@@ -5,6 +7,7 @@ export interface iAction {
 
 export interface iState {
     user: {
-        isLogged: false
+        isLogged: false,
+        user: iUser
     }
 }

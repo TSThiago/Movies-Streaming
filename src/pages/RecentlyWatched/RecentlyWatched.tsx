@@ -14,8 +14,11 @@ import { iUser } from '../../types/user.interface'
 import getMovieDetails from '../../services/api/getMovieDetails'
 import adaptMovies from '../../shared/adapters/adaptFavoriteMovies'
 import getWatchedMovies from '../../services/api/getWatchedMovies'
+import { useSelector } from 'react-redux'
+import { iState } from '../../types/redux.interface'
 
 const RecentlyWatched = () => {
+    const userInfos = useSelector((state: iState) => state.user.user)
     const [allWatchedMoviesIds, setWatchedMoviesIds] = useState<iUserMovies[]>([])
     const [userWatchedMoviesIds, setUserWatchedMoviesIds] = useState<iUserMovies[]>([])
     const [userWatchedMovies, setUserWatchedMovies] = useState<iMovieList[]>([])
@@ -37,8 +40,7 @@ const RecentlyWatched = () => {
     }, [])
 
     useEffect(() => {
-        let user: iUser = JSON.parse(localStorage.getItem('user') || '')
-        const filtederMovies = filterMovies(user.id)
+        const filtederMovies = filterMovies(userInfos.id)
         setUserWatchedMoviesIds(filtederMovies)
         const usersMovies = async () => {
             const watchedMovies: iMovieList[] = await Promise.all(userWatchedMoviesIds.map((item) => handleWatchedMovies(item.movieId)))
