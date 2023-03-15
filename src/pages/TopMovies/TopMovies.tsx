@@ -108,7 +108,7 @@ const TopMovies = () => {
 
                             {topFive.map((movie: IFilmList, index: number) => {
                                 return (
-                                    <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index + 1]}`}>
+                                    <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index + 1]}/null`}>
                                         <div key={movie.movieId} className="viewMoreMovie" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + movie.background + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                             <div className="viewMoreCategories">
                                                 {getGenreNames(movie.tagsGenre).map(genre => {
@@ -136,9 +136,9 @@ const TopMovies = () => {
                         <>
                             {topMovies.map((topMovie: IFilmList, index: number) => {
                                 return (
-                                    <Link to={`/Movies/${topMovie.movieId}/${getGenreNames(topMovie.tagsGenre).join(',')}/${runTime[index]}`}>
+                                    <Link to={`/Movies/${topMovie.movieId}/${getGenreNames(topMovie.tagsGenre).join(',')}/${runTime[index]}/null`}>
                                         <div key={topMovie.movieId} className="movie" >
-                                            <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/w500' + topMovie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                            <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + topMovie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                                 {getGenreNames(topMovie.tagsGenre).map(genre => {
                                                     return (
                                                         <div className="category" >
