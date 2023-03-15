@@ -11,7 +11,7 @@
         font-size: 48px;
         font-weight: 500;
     }
-    
+
     .card {
         width: (calc(90% / 3));
         display: flex;
@@ -34,15 +34,14 @@
             .gender {
                 color: #2E2E2E;
                 font-weight: 400;
-                font-size: 0.87rem;
+                font-size: 14px;
                 border-radius: 1rem;
                 margin-left: 0.5rem;
                 background-color: #FED530;
-                padding: 0.094rem 0.5rem;
             }
         }
 
-        .containerImageFilm{
+        .containerImageFilm {
             cursor: pointer;
         }
 
@@ -73,3 +72,41 @@
         }
     }
 }
+
+
+@media (max-width: 800px) {
+    .containerFilms {
+        .pageTitle {
+            font-size: 32px;
+        }
+
+        .card {
+            .gender {
+                color: #2E2E2E;
+                font-size: 8px;
+                border-radius: 1rem;
+            }
+        }
+
+        .duration {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            z-index: 1;
+            top: 75%;
+            position: absolute;
+            font-weight: 900;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+        }
+    }
+}
+
+
+@media (max-width: 400px) {}

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './pages/App'
+import Home from './pages/App'
 import TopMovies from './pages/TopMovies/TopMovies'
 import './styles/index.scss'
 import {
@@ -22,12 +22,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
     <Router>
       <Routes>
-        <Route path='/' element={<App />} />
+        <Route path='/' element={<Home />} />
         <Route path='/recently_watched' element={<RecentlyWatched />} />
         <Route path='/top_movies' element={<TopMovies />} />
         <Route path='/favorites' element={<FavoriteMovies />} />
         <Route path='/sign' element={<SignUp  />} />
-        <Route path='/Movies/:id/:genre/:runTime/:text' element={<Movies />} />
+        <Route path='/Movies/:id/:genre/:runTime/' element={<Movies />} />
         <Route path='/SearchMovies/:text' element={<SearchMovies/>}/>
       </Routes>
     </Router>

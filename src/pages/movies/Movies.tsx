@@ -16,13 +16,13 @@ import getWatchedMovies from '../../services/api/getWatchedMovies'
 import getFavoriteMovies from '../../services/api/getFavoriteMovies'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
-import Swal from 'sweetalert2'
+import redHeart from '../../assets/redHeart.png'
 import getSearchMovies from '../../services/api/getSearchMovies'
 
 const Movies = () => {
     const isLogged = useSelector((state: iState) => state.user.isLogged)
     const [favorite, setFavorite] = useState(false)
-    const { id, genre, runTime, text } = useParams<{ id: string, genre: string, runTime: string, text: string }>();
+    const { id, genre, runTime} = useParams<{ id: string, genre: string, runTime: string}>();
     const genres = genre ? genre.split(', ') : [];
     const [response, setResponse] = useState<IFilmList[]>([])
     const [film, setFilm] = useState<IFilmList[]>([])
@@ -198,9 +198,9 @@ const Movies = () => {
                             <span>Duration: {runTime ? moment.utc().startOf('day').add({ minutes: parseInt(runTime) }).format('HH:mm') : ''}mins</span>
                             <span>Rating: {item.rating}</span>
                             {!favorite ? (
-                                <span onClick={() => addToFavorites(item, getUserId())}>< img className='btnFavorites' src={heart} alt="heartFavorites" /></span>
+                                <button onClick={() => addToFavorites(item, getUserId())}>< img className='btnFavorites' src={heart} alt="heartFavorites" /></button>
                             ) : (
-                                <span onClick={() => removeFromFavorite(item)}>< img className='btnFavorites' src={heart} alt="heartFavorites" style={{ backgroundColor: 'red' }} /></span>
+                                <button onClick={() => removeFromFavorite(item)}>< img className='btnFavorites' src={redHeart} alt="heartFavorites" /></button>
                             )}
 
                         </div>

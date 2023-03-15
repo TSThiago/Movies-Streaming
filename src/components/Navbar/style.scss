@@ -82,3 +82,101 @@ header {
 
     }
 }
+
+@media (max-width: 800px) {
+    header {
+        a {
+            font-size: 12px;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            gap: 3vw;
+            width: 50vw;
+
+            .logo {
+                font-size: 28px;
+            }
+        }
+
+        .searchBar {
+            input {
+                width: 10vw;
+                font-size: 12px;
+            }
+
+            button img {
+                height: 24px;
+            }
+
+            .user {
+                height: 10vh;
+                width: 15vw;
+                display: flex;
+                align-items: center;
+
+                .userImg {
+                    height: 36px;
+                    width: 36px;
+                    border-radius: 5em;
+                }
+
+                span {
+                    margin-left: 2vw;
+                    font-weight: 700;
+                    font-size: 12px;
+                }
+            }
+
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    header {
+        a {
+            font-size: 8px;
+        }
+
+        .links {
+            gap: 3vw;
+
+            .logo {
+                font-size: 14px;
+            }
+        }
+
+        .searchBar {
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 10vw;
+                font-size: 6px;
+                margin-left: 3vw;
+            }
+
+            button img {
+                height: 8px;
+                width: 8px;
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+
+                .userImg {
+                    height: 18px;
+                    width: 18px;
+                    border-radius: 5em;
+                }
+
+                span {
+                    font-size: 6px;
+                }
+            }
+
+        }
+    }
+}
