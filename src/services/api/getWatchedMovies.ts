@@ -1,5 +1,5 @@
 const getWatchedMovies = async () => {
-    const response = await fetch('https://apigenerator.dronahq.com/api/-B7mDXTe/WatchedMovies')
+    const response = await fetch('https://api-generator.retool.com/E7hhVD/watched_movies')
     .then(res => res.json())
     return response;
 }

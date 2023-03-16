@@ -1,5 +1,5 @@
 const getFavoriteMovies = async () => {
-    const response = await fetch('https://apigenerator.dronahq.com/api/4sHK6s2W/users_favorite')
+    const response = await fetch('https://api-generator.retool.com/kJcM13/users_favorites')
     .then(res => res.json())
     return response;
 }
