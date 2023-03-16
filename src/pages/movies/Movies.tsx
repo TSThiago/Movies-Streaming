@@ -106,7 +106,7 @@ const Movies = () => {
         if (!!movie && !!userId) {
             watchedMovies.map((watchedMovie) => {
                 if (watchedMovie.movieId === movie.movieId && watchedMovie.userId === userId) {
-                    fetch('https://apigenerator.dronahq.com/api/-B7mDXTe/WatchedMovies/' + watchedMovie.id, { method: 'DELETE' })
+                    fetch('https://api-generator.retool.com/E7hhVD/watched_movies/' + watchedMovie.id, { method: 'DELETE' })
                         .then(res => res.json())
                 }
             })
@@ -118,7 +118,7 @@ const Movies = () => {
                 },
                 body: JSON.stringify(watchedMovie)
             };
-            fetch('https://apigenerator.dronahq.com/api/-B7mDXTe/WatchedMovies', myInit)
+            fetch('https://api-generator.retool.com/E7hhVD/watched_movies', myInit)
                 .then(function (response) {
                     return response.json();
                 })
@@ -158,7 +158,7 @@ const Movies = () => {
                 },
                 body: JSON.stringify(favMovie)
             };
-            fetch('https://apigenerator.dronahq.com/api/4sHK6s2W/users_favorite', myInit)
+            fetch('https://api-generator.retool.com/kJcM13/users_favorites', myInit)
                 .then(function (response) {
                     return response.json();
                 })
@@ -175,7 +175,7 @@ const Movies = () => {
     const removeFromFavorite = (movie: IFilmList) => {
         favoriteMovies.map((favMovie) => {
             if (favMovie.movieId === movie.movieId) {
-                fetch('https://apigenerator.dronahq.com/api/4sHK6s2W/users_favorite/' + favMovie.id, { method: 'DELETE' })
+                fetch('https://api-generator.retool.com/kJcM13/users_favorites/' + favMovie.id, { method: 'DELETE' })
                     .then(res => res.json())
             }
         })

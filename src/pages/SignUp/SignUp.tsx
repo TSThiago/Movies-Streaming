@@ -34,7 +34,7 @@ const SignUp = () => {
                 },
                 body: JSON.stringify(newUser)
             };
-            fetch('https://apigenerator.dronahq.com/api/P93xyegJ/users', myInit)
+            fetch('https://retoolapi.dev/iNtNmX/users', myInit)
                 .then(function (response) {
                     return response.json();
                 })

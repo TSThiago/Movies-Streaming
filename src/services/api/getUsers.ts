@@ -1,5 +1,5 @@
 const getUsers = async () => {
-    const response = await fetch('https://apigenerator.dronahq.com/api/P93xyegJ/users')
+    const response = await fetch('https://retoolapi.dev/iNtNmX/users')
     .then(res => res.json())
     return response
 }
