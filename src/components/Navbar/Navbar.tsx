@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './style.scss'
 import searchIcon from '../../assets/search_icon.png'
-import dogo from '../../assets/dogo.jpg'
 import getMovies from '../../services/api/getTopMovies'
 import { useSelector } from 'react-redux'
 import { iState } from '../../types/redux.interface'
@@ -11,17 +10,18 @@ import { setLogoutAction, setRemoveUserInfosAction } from '../../store/user/acti
 import Swal from 'sweetalert2'
 import { iUser } from '../../types/user.interface'
 
-const NavBar = () => {
+
+const NavBar : React.FC = () => {
     const isLogged = useSelector((state: iState) => state.user.isLogged)
     const userInfos = useSelector((state: iState) => state.user.user)
     const [user, setUser] = useState<iUser>({
         id: 0,
-        firstName : '',
-        lastName : '',
+        firstName: '',
+        lastName: '',
         password: '',
-        email : '',
-        phone : '',
-        profilePic : ''
+        email: '',
+        phone: '',
+        profilePic: ''
     })
     const [logoutVisible, setLogoutVisible] = useState(false)
     const [textInput, setTextInput] = useState<string>()
@@ -42,12 +42,12 @@ const NavBar = () => {
         store.dispatch(setLogoutAction(false))
         store.dispatch(setRemoveUserInfosAction({
             id: 0,
-            firstName : '',
-            lastName : '',
+            firstName: '',
+            lastName: '',
             password: '',
-            email : '',
-            phone : '',
-            profilePic : ''
+            email: '',
+            phone: '',
+            profilePic: ''
         }))
         navigate("/sign")
     }
@@ -76,10 +76,10 @@ const NavBar = () => {
                 <div className='searchBar'>
                     <input onChange={(e) => handleInput(e.target.value)} type='text'></input>
                     <button><Link to={`/SearchMovies/:${textInput}`}><img src={searchIcon} alt='Search icon image'></img></Link></button>
-                    
+
                     {isLogged ? (
                         <div onMouseOver={() => setLogoutVisible(true)} onMouseOut={() => setLogoutVisible(false)} className='user'>
-                            <img className='userImg' src={dogo}></img>
+                            <img className='userImg' src={user.profilePic}></img>
                             {!logoutVisible ? (
                                 <span>{user.firstName}  {user.lastName}</span>
                             ) : (
