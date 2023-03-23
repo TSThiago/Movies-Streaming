@@ -1,6 +1,6 @@
 * {
     text-decoration: none;
-    color: white;
+
 }
 
 .containerFilmsHome {
@@ -46,6 +46,8 @@
         }
 
         .duration {
+            -webkit-text-stroke-width: 0.2px;
+            -webkit-text-stroke-color: #000;
             position: relative;
             gap: 10px;
             height: 20px;
@@ -58,6 +60,9 @@
         }
 
         .title {
+            -webkit-text-stroke-width: 0.7px;
+            -webkit-text-stroke-color: #000;
+            color: white;
             display: flex;
             position: relative;
             font-weight: 700;
