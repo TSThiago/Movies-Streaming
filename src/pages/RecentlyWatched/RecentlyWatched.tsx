@@ -92,9 +92,9 @@ const RecentlyWatched = () => {
                 <div className="movies">
                     {userWatchedMovies.map((movie: iMovieList, index: number) => {
                         return (
-                            <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index]}/${text}`}>
+                            <Link to={`/Movies/${movie.movieId}/${getGenreNames(movie.tagsGenre).join(',')}/${runTime[index]}/${text}`} style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + movie.background + ')', backgroundSize: '1000px', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                                 <div key={movie.movieId} className="movie" >
-                                    <div className="categories" style={{ backgroundImage: 'url(https://image.tmdb.org/t/p/original' + movie.background + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                                    <div className="categories">
                                         {getGenreNames(movie.tagsGenre).map(genre => {
                                             return (
                                                 <div className="category" >

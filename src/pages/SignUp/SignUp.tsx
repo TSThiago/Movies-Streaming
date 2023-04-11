@@ -97,9 +97,9 @@ const SignUp = () => {
         setUserPassword(e.currentTarget.value)
     }
 
-    const setInfosAction = (user : iUser) => {
+    const setInfosAction = (user: iUser) => {
         store.dispatch(setUserInfosAction(user))
-    } 
+    }
 
     const handleUser = async () => {
         getUsers()
@@ -136,85 +136,85 @@ const SignUp = () => {
     return (
         <>
             <NavBar></NavBar>
-            <section className="signUpContainer">
-                <div className="signUpHeader">
-                    {signUp ? (
-                        <>
+
+            {signUp ? (
+                <>
+                    <section className="signUpContainer" style={{height: '791px'}}>
+                        <div className="signUpHeader">
                             <div onClick={() => setSignUp(true)} style={{ backgroundColor: '#111111' }} className='signUpBtn'>
                                 <span>Sign up</span>
                             </div>
                             <div onClick={() => setSignUp(false)} style={{ backgroundColor: '#313131' }} className='loginBtn'>
                                 <span>Log in</span>
                             </div>
-                        </>
+                        </div>
+                        <div className='signUp' >
+                            <form onSubmit={formik.handleSubmit}>
+                                <h2>Sign up</h2>
+                                <div className='inputs'>
+                                    <div className='smallInputs'>
+                                        <label className='smallLabel' htmlFor="firstName">First Name</label>
+                                        <input onChange={formik.handleChange} defaultValue={formik.values.firstName} className='smallInput' type="text" id='firstName' />
+                                        <p>{formik.errors.firstName}</p>
+                                    </div>
+                                    <div className='smallInputs'>
+                                        <label className='smallLabel' htmlFor="lastName">Last Name</label>
+                                        <input onChange={formik.handleChange} defaultValue={formik.values.lastName} className='smallInput' type="text" id='lastName' />
+                                        <p>{formik.errors.lastName}</p>
+                                    </div>
+                                </div>
 
-                    ) : (
-                        <>
+
+                                <label htmlFor="password">Password</label>
+                                <input onChange={formik.handleChange} defaultValue={formik.values.password} type="password" id='password' />
+                                <p>{formik.errors.password}</p>
+                                <label htmlFor="email">Email address</label>
+                                <input onChange={formik.handleChange} defaultValue={formik.values.email} type="email" id='email' />
+                                <p>{formik.errors.email}</p>
+                                <div className='inputs'>
+                                    <div className='smallInputs'>
+                                        <label className='smallLabel' htmlFor="phone">Phone Number</label>
+                                        <input onChange={formik.handleChange} defaultValue={formik.values.phone} className='smallInput' type='tel' id='phone' />
+                                        <p>{formik.errors.phone}</p>
+                                    </div>
+                                    <div>
+                                        <label className='smallLabel' htmlFor="picture">Profile Picture URL</label>
+                                        <input onChange={formik.handleChange} defaultValue={formik.values.profilePic} className='smallInput' type="text" id='profilePic' />
+                                        <p>{formik.errors.profilePic}</p>
+                                    </div>
+                                </div>
+                                <button type='submit'>Sign up</button>
+                            </form>
+
+                        </div >
+                    </section>
+                </>
+
+            ) : (
+                <>
+                    <section className="signUpContainer" style={{height: '538px'}}>
+                        <div className="signUpHeader">
                             <div onClick={() => setSignUp(true)} style={{ backgroundColor: '#313131' }} className='signUpBtn'>
                                 <span>Sign up</span>
                             </div>
                             <div onClick={() => setSignUp(false)} style={{ backgroundColor: '#111111' }} className='loginBtn'>
                                 <span>Log in</span>
                             </div>
-                        </>
-                    )}
-
-                </div>
-                {signUp ? (
-                    <div className='signUp'>
-                        <form onSubmit={formik.handleSubmit}>
-                            <h2>Sign up</h2>
-                            <div className='inputs'>
-                                <div className='smallInputs'>
-                                    <label className='smallLabel' htmlFor="firstName">First Name</label>
-                                    <input onChange={formik.handleChange} defaultValue={formik.values.firstName} className='smallInput' type="text" id='firstName' />
-                                    <p>{formik.errors.firstName}</p>
-                                </div>
-                                <div className='smallInputs'>
-                                    <label className='smallLabel' htmlFor="lastName">Last Name</label>
-                                    <input onChange={formik.handleChange} defaultValue={formik.values.lastName} className='smallInput' type="text" id='lastName' />
-                                    <p>{formik.errors.lastName}</p>
-                                </div>
-                            </div>
-
-
-                            <label htmlFor="password">Password</label>
-                            <input onChange={formik.handleChange} defaultValue={formik.values.password} type="password" id='password' />
-                            <p>{formik.errors.password}</p>
-                            <label htmlFor="email">Email address</label>
-                            <input onChange={formik.handleChange} defaultValue={formik.values.email} type="email" id='email' />
-                            <p>{formik.errors.email}</p>
-                            <div className='inputs'>
-                                <div className='smallInputs'>
-                                    <label className='smallLabel' htmlFor="phone">Phone Number</label>
-                                    <input onChange={formik.handleChange} defaultValue={formik.values.phone} className='smallInput' type='tel' id='phone' />
-                                    <p>{formik.errors.phone}</p>
-                                </div>
-                                <div>
-                                    <label className='smallLabel' htmlFor="picture">Profile Picture URL</label>
-                                    <input onChange={formik.handleChange} defaultValue={formik.values.profilePic} className='smallInput' type="text" id='profilePic' />
-                                    <p>{formik.errors.profilePic}</p>
-                                </div>
-                            </div>
-                            <button type='submit'>Sign up</button>
-                        </form>
-
-                    </div>
-                ) : (
-                    <div className='logIn'>
-                        <div className='logInInputs'>
-                            <h2>Log in</h2>
-                            <label htmlFor="email">Email address</label>
-                            <input onChange={handleEmail} defaultValue={userEmail} type="email" id='email' />
-                            <label htmlFor="password">Password</label>
-                            <input onChange={handlePassword} defaultValue={userPassword} type="password" id='password' />
-                            <button onClick={handleUser}>Log in</button>
                         </div>
+                        <div className='logIn'>
+                            <div className='logInInputs'>
+                                <h2>Log in</h2>
+                                <label htmlFor="email">Email address</label>
+                                <input onChange={handleEmail} defaultValue={userEmail} type="email" id='email' />
+                                <label htmlFor="password">Password</label>
+                                <input onChange={handlePassword} defaultValue={userPassword} type="password" id='password' />
+                                <button onClick={handleUser}>Log in</button>
+                            </div>
 
-                    </div>
-                )}
-
-            </section>
+                        </div>
+                    </section>
+                </>
+            )}
             <Footer></Footer>
         </>
     )

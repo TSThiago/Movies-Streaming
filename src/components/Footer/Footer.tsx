@@ -1,9 +1,9 @@
-import React from 'react'
 import "./style.scss"
 import setaFooter from "../../assets/setaFooter.svg"
 import locationMapMarker from "../../assets/locationMapMarker.png"
 import email from '../../assets/email.png'
 import phone from '../../assets/phone.png'
+import { Link } from "react-router-dom"
 
 const Footer = () => {
 
@@ -23,23 +23,23 @@ const Footer = () => {
 
       <section className='subContainerFooter'>
         <div className='subContainerSection'>
-          <h4 className='title'>Product</h4>
-          <p className='subTitleOne'>Movies</p>
-          <p className='subTitleTwo'>Videos</p>
+          <Link to='/'><h4 className='title'>Product</h4></Link>
+          <Link to='/'>Movies</Link>
+          <Link to='/'>Videos</Link>
         </div>
 
         <div className='subContainerSection'>
-          <h4 className='title'>Media Group</h4>
-          <p>Nice Studio</p>
-          <p>Nice News</p>
-          <p>Nice Tv</p>
+        <Link to='/'><h4 className='title'>Media Group</h4></Link>
+        <Link to='/'>Nice Studio</Link>
+        <Link to='/'>Nice News</Link>
+        <Link to='/'>Nice Tv</Link>
         </div>
 
         <div className='subContainerSection'>
-          <h4 className='title'>Sitemap</h4>
-          <p>About</p>
-          <p>Careers</p>
-          <p>Press</p>
+        <Link to='/'><h4 className='title'>Sitemap</h4></Link>
+        <Link to='/'>About</Link>
+        <Link to='/'>Careers</Link>
+        <Link to='/'>Press</Link>
         </div>
 
         <div className='sectionThree'>

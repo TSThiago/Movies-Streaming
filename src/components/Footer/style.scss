@@ -1,8 +1,13 @@
 .containerFooter {
+    color: white;
     margin: 5vh 0;
     display: flex;
     width: 99.3vw;
     height: 50vh;
+
+    a {
+        color: white;
+    }
 
     .sectionOne {
         display: grid;

@@ -48,7 +48,8 @@ header {
         input {
             width: 20vw;
             background-color: transparent;
-            border-style: none;
+            border: 0.2px;
+            border-style: solid;
             color: white;
             font-size: 16px;
         }
