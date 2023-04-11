@@ -28,4 +28,4 @@ As requisições são obtidas de um API do The Movie Data Base:
 'https://developers.themoviedb.org/3/getting-started/introduction'.
 
 ## Você pode acessá-lo por meio deste link: 
-'https://movies-streaming-14zv0rp4m-tsthiago.vercel.app'
+'https://movies-streaming-53th.vercel.app/'
